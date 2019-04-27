@@ -37,26 +37,31 @@
             </button>
           </div>
           <div class="modal-body">
-            <form action="#">
+            <form #appointmentForm="ngForm" (ngSubmit)="onSubmit(appointmentForm)">
+            
               <div class="form-group">
                 <label for="appointment_name" class="text-black">Full Name</label>
-                <input type="text" class="form-control" id="appointment_name">
+                <input required [(ngModel)]="appointmentModel.fullName" #appointment_name="ngModel" name="appointment_name" type="text" class="form-control" id="appointment_name">
+                <div class="alert alert-danger" *ngIf="appointment_name.touched && !appointment_name.valid">Full name is required.</div>
               </div>
               <div class="form-group">
                 <label for="appointment_email" class="text-black">Email</label>
-                <input type="text" class="form-control" id="appointment_email">
+                <input required [(ngModel)]="appointmentModel.email" #appointment_email="ngModel" name="appointment_email" type="text" class="form-control" id="appointment_email">
+                <div class="alert alert-danger" *ngIf="appointment_email.touched && !appointment_email.valid">Email is required.</div>
               </div>
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="appointment_date" class="text-black">Date</label>
-                    <input type="text" class="form-control" id="appointment_date">
+                    <input required [(ngModel)]="appointmentModel.date" #appointment_date="ngModel" name="appointment_date" type="text" class="form-control" id="appointment_date">
+                    <div class="alert alert-danger" *ngIf="appointment_date.touched && !appointment_date.valid">Date is required.</div>
                   </div>    
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="appointment_time" class="text-black">Time</label>
-                    <input type="text" class="form-control" id="appointment_time">
+                    <input required [(ngModel)]="appointmentModel.time" #appointment_time="ngModel" name="appointment_time" type="text" class="form-control" id="appointment_time">
+                    <div class="alert alert-danger" *ngIf="appointment_time.touched && !appointment_time.valid">Time is required.</div>
                   </div>
                 </div>
               </div>
@@ -64,10 +69,11 @@
   
               <div class="form-group">
                 <label for="appointment_message" class="text-black">Message</label>
-                <textarea name="" id="appointment_message" class="form-control" cols="30" rows="5"></textarea>
+                <textarea required [ngModel]="appointmentModel.message" #appointment_message="ngModel" name="appointment_message" id="appointment_message" class="form-control" cols="30" rows="5"></textarea>
+                <div class="alert alert-danger" *ngIf="appointment_message.touched && !appointment_message.valid">Message is required.</div>
               </div>
               <div class="form-group">
-                <input type="submit" value="Send Message" class="btn btn-primary" (click)="Submit()">
+                <input type="submit" value="Send Message" class="btn btn-primary">
               </div>
             </form>
           </div>
@@ -83,6 +89,20 @@
 </div>
 
 <button type="button" class="btn btn-primary">Primary</button>
+
+<form>
+  <div class="form-group">
+    <label for="firstName">First Name</label>
+    <input ngModel name="firstName" #firstName="ngModel" (change)="log(firstName)" id="firstName" type="text" class="form-control">
+  </div>
+
+  <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input id="lastName" type="text" class="form-control">
+  </div>
+  <button class="btn btn-primary">Submit</button>
+</form>
+
 
 
 </div>

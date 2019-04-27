@@ -1,20 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { Appointment } from 'src/app/models/appointment';
 
 @Component({
   selector: 'app-mainpage',
   templateUrl: './mainpage.component.html',
   styleUrls: ['./mainpage.component.scss']
 })
-export class MainpageComponent implements OnInit {
 
-  constructor() { }
+export class MainpageComponent {
 
-  ngOnInit() {
-    console.log("Submitted");
-  }
-
-  Submit(){
-    console.log("Submitted");
-  }
-
+    appointmentModel = new Appointment('John', 'John@gmail.com', '2019/04/27', '6:16PM', 'My message');
 }
