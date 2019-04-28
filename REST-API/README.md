@@ -19,5 +19,6 @@ use doctor_channel
 # Create Collections
 ```
 db.createCollection('appointments')
+db.createCollection('doctors')
 ```
 
