@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Appointment } from 'src/app/models/appointment';
+import { HttpClient } from '@angular/common/http';
+import { DataService } from 'src/app/services/data.service';
+import { ObservableLike } from 'rxjs';
 
 @Component({
   selector: 'app-mainpage',
@@ -9,5 +12,30 @@ import { Appointment } from 'src/app/models/appointment';
 
 export class MainpageComponent {
 
-    appointmentModel = new Appointment('John', 'John@gmail.com', '2019/04/27', '6:16PM', 'My message');
+    userId:string = "userid";
+    appointmentModel = new Appointment(this.userId, '', '', '', '', '');
+    appointmentObject:Object;
+    
+
+    constructor(private data:DataService, private http:HttpClient){
+
+    }
+
+    onSubmit(){
+      this.appointmentObject = {
+        "userId": this.appointmentModel.userId,
+        "fullName": this.appointmentModel.fullName,
+        "email": this.appointmentModel.email,
+        "date": this.appointmentModel.date,
+        "time": this.appointmentModel.time,
+        "message": this.appointmentModel.message,
+        
+      }
+      // console.log(this.appointmentObject);
+      // console.log(this.appointmentModel.fullName);
+      this.data.addAppointment(this.appointmentObject).subscribe(data => {
+          console.log("Appointment Added");
+          console.log(this.appointmentObject);
+      });
+    }
 }
