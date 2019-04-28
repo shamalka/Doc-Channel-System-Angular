@@ -32,6 +32,8 @@ var appointmentSchema = mongoose.Schema({
     }
 });
 
+
+
 var Appointment = module.exports = mongoose.model('Appointment', appointmentSchema);
 
 // Get Appointments

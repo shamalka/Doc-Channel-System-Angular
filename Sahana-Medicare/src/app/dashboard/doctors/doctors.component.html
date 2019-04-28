@@ -1,3 +1,22 @@
-<p>
-  doctors works!
-</p>
+
+
+<div class="container" *ngIf="doctors">
+  <div class="row" >
+      <div class="col-sm-4" *ngFor="let doctor of doctors">
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="https://image.freepik.com/free-photo/doctor-smiling-with-stethoscope_1154-36.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{ doctor.doctorName }}</h5>
+            <p class="card-text">{{ doctor.type }}</p>
+            <a href="#" class="btn btn-primary">Make Appointment</a>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-1"></div>
+      <div class="col-sm-1"></div>
+      <div class="col-sm-1"></div>
+  </div>
+</div>

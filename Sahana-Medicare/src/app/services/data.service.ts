@@ -25,4 +25,8 @@ export class DataService {
 
     return this.http.post(url, object, {headers: this.getHeaders()});
   }
+
+  getDoctors(){
+    return this.http.get('http://localhost:3000/api/doctors');
+  }
 }

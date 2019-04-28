@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 
 app.use(bodyParser.json());
 Appointment = require('./models/appointment');
+Doctor = require('./models/doctor');
 
 const cors = require('cors');
 
@@ -35,6 +36,16 @@ app.post('/api/appointments', function(req, res){
             throw err;
         }
         res.json(appointment);
+    })
+});
+
+//Get Doctors
+app.get('/api/doctors', function(req, res){
+    Doctor.getDoctors(function(err, doctors){
+        if(err){
+            throw err;
+        }
+        res.json(doctors);
     })
 });
 
