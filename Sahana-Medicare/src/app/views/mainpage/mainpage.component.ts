@@ -34,8 +34,10 @@ export class MainpageComponent {
       // console.log(this.appointmentObject);
       // console.log(this.appointmentModel.fullName);
       this.data.addAppointment(this.appointmentObject).subscribe(data => {
-          console.log("Appointment Added");
+          console.log(window.localStorage.getItem('appointment'));
           console.log(this.appointmentObject);
       });
     }
+
+    
 }

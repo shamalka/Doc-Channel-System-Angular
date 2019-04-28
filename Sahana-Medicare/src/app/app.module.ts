@@ -14,6 +14,8 @@ import { DoctorsComponent } from './dashboard/doctors/doctors.component';
 
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 
 
@@ -26,7 +28,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     FooterComponent,
     ContactComponent,
     DashboardComponent,
-    DoctorsComponent
+    DoctorsComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

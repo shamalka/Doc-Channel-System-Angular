@@ -29,4 +29,12 @@ export class DataService {
   getDoctors(){
     return this.http.get('http://localhost:3000/api/doctors');
   }
+
+  loginUser(userObject:Object){
+    const url = 'http://localhost:3000/api/login';
+    const obj = {
+      name:"Shamalka"
+    }
+    return this.http.post(url, userObject, {headers: this.getHeaders()});
+  }
 }

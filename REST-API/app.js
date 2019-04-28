@@ -3,6 +3,8 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
+const jwt = require('jsonwebtoken');
+
 app.use(bodyParser.json());
 Appointment = require('./models/appointment');
 Doctor = require('./models/doctor');
@@ -36,6 +38,7 @@ app.post('/api/appointments', function(req, res){
             throw err;
         }
         res.json(appointment);
+        
     })
 });
 
@@ -48,6 +51,18 @@ app.get('/api/doctors', function(req, res){
         res.json(doctors);
     })
 });
+
+//Login user
+app.post('/api/login', (req, res) => {
+    var user = req.body;
+
+    jwt.sign({user}, 'secretKey', (err, token) => {
+        res.json({
+            token: token
+        });
+    });
+});
+
 
 app.listen(3000);
 console.log('Server running at port 3000...');
