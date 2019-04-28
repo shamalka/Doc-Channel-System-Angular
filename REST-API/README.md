@@ -22,3 +22,10 @@ db.createCollection('appointments')
 db.createCollection('doctors')
 ```
 
+# Install CORS
+```
+npn install cors
+```
+CORS (Cross Origin Resource Sharing) is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options.
+
+
