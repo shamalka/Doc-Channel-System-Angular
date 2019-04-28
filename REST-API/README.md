@@ -8,15 +8,15 @@ C:\Program Files\MongoDB\Server\4.0\bin
 through cmd
 then run following commands.
 
-#Start Mongo Shell
+# Start Mongo Shell
 ```
 mongo
 ```
-#Create new Database (doctor_channel)
+# Create new Database (doctor_channel)
 ```
 use doctor_channel
 ```
-#Create Collections
+# Create Collections
 ```
 db.createCollection('appointments')
 ```
