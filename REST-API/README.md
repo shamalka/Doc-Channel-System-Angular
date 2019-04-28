@@ -1,5 +1,17 @@
 # REST API Using Node, Express and MongoDB
 
+# Requirements
+Install Express Globaly
+```
+npm install -g express
+```
+Install CORS
+```
+npn install cors
+```
+CORS (Cross Origin Resource Sharing) is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options.
+
+# Database Configuration
 To Create new Database,
 Navigate to,
 ```
@@ -19,5 +31,9 @@ use doctor_channel
 # Create Collections
 ```
 db.createCollection('appointments')
+db.createCollection('doctors')
 ```
+
+
+
 
