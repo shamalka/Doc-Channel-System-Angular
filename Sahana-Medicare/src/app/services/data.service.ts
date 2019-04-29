@@ -31,7 +31,7 @@ export class DataService {
   }
 
   loginUser(userObject:Object){
-    const url = 'http://localhost:3000/api/login';
+    const url = 'http://localhost:3000/api/patient/login';
     const obj = {
       name:"Shamalka"
     }
