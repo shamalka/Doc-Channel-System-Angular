@@ -2,10 +2,6 @@ var mongoose = require('mongoose');
 
 //patient schema
 var patientSchema = mongoose.Schema({
-    patientID:{
-        type: String,
-        required: true
-    },
     patientName:{
         type: String,
         required: true
@@ -22,6 +18,10 @@ var patientSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    password:{
+        type: String,
+        required: true
+    },
     telephone:{
         type: String,
         required: true
@@ -31,4 +31,15 @@ var patientSchema = mongoose.Schema({
         required: true
     }
 });
+
 var Patient = module.exports = mongoose.model('Patient', patientSchema);
+
+// Get Patients
+module.exports.getPatients = function(callback, limit){
+    Patient.find(callback).limit(limit);
+}
+
+// Register Patient
+// module.exports.registerPatient = function(patient, callback){
+//     Patient.create(patient, callback);
+// }
