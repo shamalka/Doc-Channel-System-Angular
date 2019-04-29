@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
+const passport = require('passport');
 
 
 //models
@@ -50,6 +51,7 @@ router.get('/patients', function(req, res){
 
 //Register patient
 router.post('/register/patient', function(req, res){
+    //get data from header
     const patientName = req.body.patientName;
     const age = req.body.age;
     const gender = req.body.gender;
@@ -58,15 +60,17 @@ router.post('/register/patient', function(req, res){
     const telephone = req.body.telephone;
     const type = req.body.type;
 
+    //set data to Patient object
     let newPatient = new Patient();
-    newPatient.patientName = patientName;
-    newPatient.age = age;
-    newPatient.gender = gender;
-    newPatient.email = email;
-    newPatient.password = password;
-    newPatient.telephone = telephone;
-    newPatient.type = type;
+        newPatient.patientName = patientName;
+        newPatient.age = age;
+        newPatient.gender = gender;
+        newPatient.email = email;
+        newPatient.password = password;
+        newPatient.telephone = telephone;
+        newPatient.type = type;
 
+    //encrypt password and send data to db
     bcrypt.genSalt(10, function(err, salt){
         bcrypt.hash(newPatient.password, salt, function(err, hash){
             if(err){
@@ -86,7 +90,7 @@ router.post('/register/patient', function(req, res){
 });
 
 
-//Login user
+//Login test
 router.post('/login', (req, res) => {
     
     var user = req.body;
@@ -95,6 +99,45 @@ router.post('/login', (req, res) => {
         res.json({
             token: token
         });
+    });
+});
+
+//login patient
+router.post('/patient/login', function(req, res){
+    const email = req.body.email;
+    const password = req.body.password;
+
+    userObj = {
+        email: email,
+        password: password
+    }
+
+    Patient.findOne({email: email}, (error, user) => {
+        if(error){
+            console.log('Error - login api:', error)
+        }
+        else{
+            if(!user){
+                res.status(401).send('Invalid email!')
+            }
+            else{
+                // if(user.password != password){
+                //     res.status(401).send('Invalid password')
+                // }
+                // else{
+                    //res.json(userObj);
+                    //compare password
+                    bcrypt.compare(password, user.password, function(err, isMatch){
+                        if(err) throw err;
+                        if(isMatch){
+                            res.json(userObj);
+                        }else{
+                            res.status(401).send('Invalid password')
+                        }
+                    });
+                //}
+            }
+        }
     });
 });
 

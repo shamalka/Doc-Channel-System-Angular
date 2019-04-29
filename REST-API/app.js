@@ -6,6 +6,8 @@ var expressValidator = require('express-validator');
 var session = require('express-session');
 
 const jwt = require('jsonwebtoken');
+const config = require('./config/database');
+const passport = require('passport');
 
 app.use(bodyParser.json());
 Appointment = require('./models/appointment');
@@ -17,11 +19,17 @@ app.use(cors());
 app.options('*', cors());
 
 //Connection to Mongoose
-mongoose.connect('mongodb://localhost/doctor_channel');
+mongoose.connect(config.database);
 var db = mongoose.connection;
 
 app.use(bodyParser.urlencoded({ extended:false }));
 app.use(bodyParser.json());
+
+// passport config
+require('./config/passport')(passport);
+//passport midlleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.get('/', function(req, res){
     res.send('Go to api/doctors , api/patients , api/appointments');
