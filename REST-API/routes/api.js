@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+const jwt = require('jsonwebtoken');
 
 
 //models
@@ -107,6 +108,8 @@ router.post('/patient/login', function(req, res){
     const email = req.body.email;
     const password = req.body.password;
 
+    var signUser = req.body;
+
     userObj = {
         email: email,
         password: password
@@ -130,7 +133,15 @@ router.post('/patient/login', function(req, res){
                     bcrypt.compare(password, user.password, function(err, isMatch){
                         if(err) throw err;
                         if(isMatch){
-                            res.json(userObj);
+                            signUser.email = user.email;
+                            signUser.password = user.password;
+                            
+                            //get token
+                            jwt.sign({signUser}, 'secretKey', (err, token) => {
+                                res.json({
+                                    token: token
+                                });
+                            });
                         }else{
                             res.status(401).send('Invalid password')
                         }
