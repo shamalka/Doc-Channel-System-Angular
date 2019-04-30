@@ -1,0 +1,15 @@
+<div *ngIf="appointmentModel">
+  <div class="card" *ngFor="let appointment of appointmentModel">
+    <div>
+      <div class="card-header">
+        {{ appointment.date }}
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{ appointment.message }}</h5>
+        <p class="card-text">{{ appointment.date }}.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+      <hr size="30">
+    </div>
+  </div>
+</div>

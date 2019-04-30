@@ -10,7 +10,15 @@ import { Appointment } from 'src/app/models/appointment';
 })
 export class DoctorsComponent implements OnInit {
 
+  authToken:string = localStorage.getItem('token');
   userId:string = "userid";
+
+  obj:Object = {
+    userId:this.userId
+  }
+
+  appointmentModel = new Appointment('', '', '', '', '', '');
+
   doctors:Object;
 
   constructor(private data: DataService, private http:HttpClient) { }
@@ -18,7 +26,17 @@ export class DoctorsComponent implements OnInit {
   ngOnInit(){
     this.data.getDoctors().subscribe(data =>{
       this.doctors = data;
-      console.log(this.doctors);
-    })
+      console.log(Object.values(data)[0]);
+      // console.log(this.userId);
+    });
+
+    //this.getAppointments();
+  }
+
+  getAppointments(){
+    this.data.getAppointmentsForUser(this.obj).subscribe(data => {
+      console.log(Object.values(data)[0]);
+      console.log(Object.values(Object.values(data)[0])[0]);
+    });
   }
 }

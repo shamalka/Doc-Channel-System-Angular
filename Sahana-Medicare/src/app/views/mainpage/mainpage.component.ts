@@ -12,7 +12,7 @@ import { ObservableLike } from 'rxjs';
 
 export class MainpageComponent {
 
-    userId:string = "userid";
+    userId:string = localStorage.getItem('userId');
     appointmentModel = new Appointment(this.userId, '', '', '', '', '');
     appointmentObject:Object;
     

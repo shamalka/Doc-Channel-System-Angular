@@ -30,8 +30,10 @@ export class LoginComponent {
     }
     //console.log(this.userObject);
     this.data.loginPatient(this.userObject).subscribe(res => {
-      localStorage.setItem('token',JSON.stringify(res));
+      localStorage.setItem('token',JSON.stringify(Object.values(res)[0]));
+      localStorage.setItem('userId',JSON.stringify(Object.values(res)[1]));
       console.log(localStorage.getItem('token'));
+      console.log(localStorage.getItem('userId'));
       // console.log(this.userModel.email);
       // console.log(this.userModel.password);
     });

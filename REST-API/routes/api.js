@@ -6,11 +6,12 @@ const jwt = require('jsonwebtoken');
 
 
 //models
-Appointment = require('../models/appointment');
+let Appointment = require('../models/appointment');
 Doctor = require('../models/doctor');
 let Patient = require('../models/patient');
 
-router.get('/appointments', function(req, res){
+//Get all appointments
+router.get('/appointments/all', function(req, res){
     Appointment.getAppointments(function(err, appointments){
         if(err){
             throw err;
@@ -19,7 +20,20 @@ router.get('/appointments', function(req, res){
     })
 });
 
-router.post('/appointments', function(req, res){
+//Get user appointments
+router.post('/appointments/user', function(req, res){
+    const userId = req.body.userId;
+    Appointment.find({userId: userId}, function(err, appointment){
+        if(err){
+            throw err;
+        }
+        res.json(appointment);
+        
+    })
+});
+
+//Add new appointment
+router.post('/appointments/add', function(req, res){
     var appointment = req.body;
     Appointment.addAppointment(appointment, function(err, appointment){
         if(err){
@@ -29,6 +43,8 @@ router.post('/appointments', function(req, res){
         
     })
 });
+
+
 
 //Get Doctors
 router.get('/doctors', function(req, res){
@@ -139,7 +155,8 @@ router.post('/patient/login', function(req, res){
                             //get token
                             jwt.sign({signUser}, 'secretKey', (err, token) => {
                                 res.json({
-                                    token: token
+                                    token: token,
+                                    id: user.id
                                 });
                             });
                         }else{

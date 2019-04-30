@@ -23,7 +23,13 @@ export class DataService {
   }
 
   addAppointment(object:Object){
-    const url = this.serverUrl + '/appointments';
+    const url = this.serverUrl + '/appointments/add';
+
+    return this.http.post(url, object, {headers: this.getHeaders()});
+  }
+
+  getAppointmentsForUser(object:Object){
+    const url = this.serverUrl + '/appointments/user';
 
     return this.http.post(url, object, {headers: this.getHeaders()});
   }

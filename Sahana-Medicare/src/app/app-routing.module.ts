@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { DoctorsComponent } from './dashboard/doctors/doctors.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { AppointmentsComponent } from './dashboard/appointments/appointments.component';
 
 const routes: Routes = [
   {path:'',component:MainpageComponent,pathMatch:'full'},
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path:'dashboard',component:DashboardComponent,pathMatch:'full'},
   {path:'dashboard/doctors',component:DoctorsComponent,pathMatch:'full'},
   {path:'login',component:LoginComponent,pathMatch:'full'},
-  {path:'register',component:RegisterComponent,pathMatch:'full'}
+  {path:'register',component:RegisterComponent,pathMatch:'full'},
+  {path:'appointments',component:AppointmentsComponent,pathMatch:'full'}
 ];
 
 @NgModule({
