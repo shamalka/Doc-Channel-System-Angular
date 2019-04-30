@@ -6,10 +6,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class DataService {
 
+  serverUrl:string = "http://localhost:3000/api";
+
   constructor(private http:HttpClient) { }
 
   getAppointments(){
-    return this.http.get('http://localhost:3000/api/appointments');
+    return this.http.get(this.serverUrl + '/appointments');
   }
 
   private getHeaders(){
@@ -21,20 +23,25 @@ export class DataService {
   }
 
   addAppointment(object:Object){
-    const url = 'http://localhost:3000/api/appointments';
+    const url = this.serverUrl + '/appointments';
 
     return this.http.post(url, object, {headers: this.getHeaders()});
   }
 
   getDoctors(){
-    return this.http.get('http://localhost:3000/api/doctors');
+    return this.http.get( this.serverUrl + '/doctors');
   }
 
-  loginUser(userObject:Object){
-    const url = 'http://localhost:3000/api/patient/login';
+  loginPatient(userObject:Object){
+    const url = this.serverUrl + '/patient/login';
     const obj = {
       name:"Shamalka"
     }
     return this.http.post(url, userObject, {headers: this.getHeaders()});
+  }
+
+  registerPatient(object:Object){
+    const url = this.serverUrl + '/register/patient';
+    return this.http.post(url, object, {headers: this.getHeaders()});
   }
 }

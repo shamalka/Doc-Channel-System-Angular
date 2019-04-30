@@ -53,23 +53,23 @@ router.get('/patients', function(req, res){
 //Register patient
 router.post('/register/patient', function(req, res){
     //get data from header
-    const patientName = req.body.patientName;
-    const age = req.body.age;
+    const fullName = req.body.fullName;
+    const dob = req.body.dob;
     const gender = req.body.gender;
     const email = req.body.email;
     const password = req.body.password;
     const telephone = req.body.telephone;
-    const type = req.body.type;
+    //const type = req.body.type;
 
     //set data to Patient object
     let newPatient = new Patient();
-        newPatient.patientName = patientName;
-        newPatient.age = age;
+        newPatient.fullName = fullName;
+        newPatient.dob = dob;
         newPatient.gender = gender;
         newPatient.email = email;
         newPatient.password = password;
         newPatient.telephone = telephone;
-        newPatient.type = type;
+        //newPatient.type = type;
 
     //encrypt password and send data to db
     bcrypt.genSalt(10, function(err, salt){

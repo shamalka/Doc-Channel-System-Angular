@@ -2,11 +2,11 @@ var mongoose = require('mongoose');
 
 //patient schema
 var patientSchema = mongoose.Schema({
-    patientName:{
+    fullName:{
         type: String,
         required: true
     },
-    age:{
+    dob:{
         type: String,
         required: true
     },
@@ -25,11 +25,11 @@ var patientSchema = mongoose.Schema({
     telephone:{
         type: String,
         required: true
-    },
-    type:{
-        type: String,
-        required: true
     }
+    // type:{
+    //     type: String,
+    //     required: true
+    // }
 });
 
 var Patient = module.exports = mongoose.model('Patient', patientSchema);

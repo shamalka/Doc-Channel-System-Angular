@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginComponent {
 
-  userModel = new User('','','','','');
+  userModel = new User('','','','','','');
   userObject:object;
   
   constructor(private data:DataService, private http:HttpClient) { }
@@ -29,11 +29,11 @@ export class LoginComponent {
       password: this.userModel.password
     }
     //console.log(this.userObject);
-    this.data.loginUser(this.userObject).subscribe(res => {
+    this.data.loginPatient(this.userObject).subscribe(res => {
       localStorage.setItem('token',JSON.stringify(res));
       console.log(localStorage.getItem('token'));
-      console.log(this.userModel.email);
-      console.log(this.userModel.password);
+      // console.log(this.userModel.email);
+      // console.log(this.userModel.password);
     });
   }
 

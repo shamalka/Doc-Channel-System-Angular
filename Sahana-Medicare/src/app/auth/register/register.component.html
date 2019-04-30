@@ -1,25 +1,33 @@
 <div class="signup-form">
-  <form action="/examples/actions/confirmation.php" method="post">
+  <form #registerForm="ngForm" (ngSubmit)="Register()">
       <h2>Register</h2>
       <p class="hint-text">Create your account.</p>
       <div class="form-group">
-        <input type="text" class="form-control" name="firstName" placeholder="First Name" required="required">
+        <input [(ngModel)]="userModel.fullName" #fullName="ngModel" type="text" class="form-control" name="fullName" placeholder="Full Name" required="required">
       </div>
       <div class="form-group">
-        <input type="text" class="form-control" name="lastName" placeholder="Last Name" required="required">
+          <input [(ngModel)]="userModel.email" #email="ngModel" type="email" class="form-control" name="email" placeholder="Email" required="required">
+        </div>
+        <div class="form-group">
+            <input [(ngModel)]="userModel.password" #password="ngModel" type="password" class="form-control" name="password" placeholder="Password" required="required">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required="required">
+        </div>
+      <div class="form-group">
+          <div class="text-left">Date of birth</div>
+        <input [(ngModel)]="userModel.dob" #dob="ngModel" type="date" class="form-control" name="dob" placeholder="Date of birth" required="required">
       </div>
       <div class="form-group">
-        <input type="text" class="form-control" name="type" placeholder="type" required="required">
+          <select [(ngModel)]="userModel.gender" #gender="ngModel" name="gender" class="form-control" id="sel1">
+            <option>Select Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+          </select>
       </div>
       <div class="form-group">
-        <input type="email" class="form-control" name="email" placeholder="Email" required="required">
-      </div>
-      <div class="form-group">
-          <input type="password" class="form-control" name="password" placeholder="Password" required="required">
-      </div>
-      <div class="form-group">
-          <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required="required">
-      </div>        
+        <input [(ngModel)]="userModel.telephone" #telephone="ngModel" type="text" class="form-control" name="telephone" placeholder="Telephone" required="required">
+      </div>          
       <div class="form-group">
           <label class="checkbox-inline"><input type="checkbox" required="required"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
       </div>

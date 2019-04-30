@@ -53,14 +53,14 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="appointment_date" class="text-black">Date</label>
-                    <input required [(ngModel)]="appointmentModel.date" #appointment_date="ngModel" name="appointment_date" type="text" class="form-control" id="appointment_date">
+                    <input required [(ngModel)]="appointmentModel.date" #appointment_date="ngModel" name="appointment_date" type="date" class="form-control" id="appointment_date">
                     <div class="alert alert-danger" *ngIf="appointment_date.touched && !appointment_date.valid">Date is required.</div>
                   </div>    
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="appointment_time" class="text-black">Time</label>
-                    <input required [(ngModel)]="appointmentModel.time" #appointment_time="ngModel" name="appointment_time" type="text" class="form-control" id="appointment_time">
+                    <input required [(ngModel)]="appointmentModel.time" #appointment_time="ngModel" name="appointment_time" type="time" class="form-control" id="appointment_time">
                     <div class="alert alert-danger" *ngIf="appointment_time.touched && !appointment_time.valid">Time is required.</div>
                   </div>
                 </div>
@@ -104,6 +104,8 @@
 </form>
 
 <button class="btn btn-primary">Login</button>
+
+
 
 
 
