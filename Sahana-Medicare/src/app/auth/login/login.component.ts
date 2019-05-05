@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { DataService } from 'src/app/services/data.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -36,6 +36,8 @@ export class LoginComponent {
       console.log(localStorage.getItem('userId'));
       // console.log(this.userModel.email);
       // console.log(this.userModel.password);
+    },(err:HttpErrorResponse)=>{
+      console.log(err);
     });
   }
 

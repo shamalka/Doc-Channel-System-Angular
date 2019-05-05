@@ -2,12 +2,28 @@ var mongoose = require('mongoose');
 
 //Doctor Schema
 var doctorSchema = mongoose.Schema({
-    doctorId:{
+    doctorName:{
         type: String,
         required: true
     },
-    doctorName:{
+    email:{
         type: String,
+        required: true
+    },
+    password:{
+        type: String,
+        required: true
+    },
+    arrivalTime:{
+        type: String,
+        required: true
+    },
+    departureTime:{
+        type: String,
+        required: true
+    },
+    availability:{
+        type: Boolean,
         required: true
     },
     type:{

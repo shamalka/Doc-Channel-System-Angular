@@ -39,7 +39,7 @@ export class DataService {
   }
 
   loginPatient(userObject:Object){
-    const url = this.serverUrl + '/patient/login';
+    const url = this.serverUrl + '/users/login/patient';
     const obj = {
       name:"Shamalka"
     }
@@ -47,7 +47,7 @@ export class DataService {
   }
 
   registerPatient(object:Object){
-    const url = this.serverUrl + '/register/patient';
+    const url = this.serverUrl + '/users/register/patient';
     return this.http.post(url, object, {headers: this.getHeaders()});
   }
 }
