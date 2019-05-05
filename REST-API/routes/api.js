@@ -157,7 +157,8 @@ router.post('/patient/login', function(req, res){
                             jwt.sign({signUser}, 'secretKey', (err, token) => {
                                 res.json({
                                     token: token,
-                                    id: user.id
+                                    id: user.id,
+                                    
                                 });
                             });
                         }else{
@@ -298,7 +299,8 @@ router.post('/users/login/:userFlag', function(req, res){
                                 jwt.sign({signUser}, 'secretKey', (err, token) => {
                                     res.json({
                                         token: token,
-                                        id: user.id
+                                        id: user.id,
+                                        userName: user.fullName
                                     });
                                 });
                             }else{
@@ -346,7 +348,8 @@ router.post('/users/login/:userFlag', function(req, res){
                                 jwt.sign({signUser}, 'secretKey', (err, token) => {
                                     res.json({
                                         token: token,
-                                        id: user.id
+                                        id: user.id,
+                                        userName: user.doctorName
                                     });
                                 });
                             }else{

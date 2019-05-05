@@ -10,15 +10,24 @@ import { ObservableLike } from 'rxjs';
   styleUrls: ['./mainpage.component.scss']
 })
 
-export class MainpageComponent {
+export class MainpageComponent implements OnInit {
 
     userId:string = localStorage.getItem('userId');
     appointmentModel = new Appointment(this.userId, '', '', '', '', '');
     appointmentObject:Object;
     
+    userName: string;
 
     constructor(private data:DataService, private http:HttpClient){
 
+    }
+
+    ngOnInit() {
+      //Set Username
+      if(localStorage.getItem('token')!=null){
+        this.userName = localStorage.getItem('userName');
+        console.log(this.userName);
+      }
     }
 
     onSubmit(){
@@ -37,6 +46,21 @@ export class MainpageComponent {
           console.log(window.localStorage.getItem('appointment'));
           console.log(this.appointmentObject);
       });
+
+      
+    }
+
+    isLogged(){
+      this.data.isLoggedin();
+      if(this.data.isLoggedin()){
+        console.log("Logged In");
+      }else{
+        console.log("not logged in");
+      }
+    }
+
+    Logout(){
+      this.data.logoutUser();
     }
 
     
