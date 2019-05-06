@@ -1,4 +1,4 @@
-<div class="signup-form">
+<div *ngIf="!isLogged"  class="signup-form">
   <form #loginForm="ngForm" (ngSubmit)="Login()">
   <h2>Login</h2>
       <div class="form-group">
@@ -12,4 +12,8 @@
       </div>
       <div class="text-center">Don't have an account? <a routerLink="/register">Sign up</a></div>
   </form>
+
+  
 </div>
+
+<div *ngIf="isLogged" class="text-center">Already logged in</div>

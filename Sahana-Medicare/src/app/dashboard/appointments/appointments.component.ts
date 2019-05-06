@@ -17,18 +17,31 @@ export class AppointmentsComponent implements OnInit {
     userId:this.userId
   }
 
+  isLogged:boolean;
   appointmentModel:any; 
 
   constructor(private http:HttpClient, private data:DataService) { }
 
   ngOnInit() {
-    this.getAppointments();
+    this.checkLogin();
+    if(this.isLogged){
+      this.getAppointments();
+    }
+    
   }
 
   getAppointments(){
     this.data.getAppointmentsForUser(this.obj).subscribe(data => {
       this.appointmentModel = data;
     });
+  }
+
+  checkLogin(){
+    if(this.data.isLoggedin()){
+      this.isLogged = true;
+    }else{
+      this.isLogged = false;
+    }
   }
 
 }

@@ -9,12 +9,18 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 
   userModel = new User('','','','','','');
   userObject:object;
+
+  isLogged:boolean;
   
   constructor(private data:DataService, private http:HttpClient, private router: Router) { }
+
+  ngOnInit(){
+    this.checkLogin();
+  }
 
   onSubmit(){
     this.userObject = {
@@ -43,6 +49,14 @@ export class LoginComponent {
     },(err:HttpErrorResponse)=>{
       console.log(err);
     });
+  }
+
+  checkLogin(){
+    if(this.data.isLoggedin()){
+      this.isLogged = true;
+    }else{
+      this.isLogged = false;
+    }
   }
 
 }

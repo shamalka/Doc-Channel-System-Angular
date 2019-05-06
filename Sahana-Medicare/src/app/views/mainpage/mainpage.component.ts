@@ -3,6 +3,7 @@ import { Appointment } from 'src/app/models/appointment';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from 'src/app/services/data.service';
 import { ObservableLike } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mainpage',
@@ -18,7 +19,7 @@ export class MainpageComponent implements OnInit {
     
     userName: string;
 
-    constructor(private data:DataService, private http:HttpClient){
+    constructor(private data:DataService, private http:HttpClient, private router:Router){
 
     }
 
@@ -61,6 +62,12 @@ export class MainpageComponent implements OnInit {
 
     Logout(){
       this.data.logoutUser();
+    }
+
+    goToAppointment(){
+      if(this.data.isLoggedin()==false){
+        this.router.navigate(['/']);
+      }
     }
 
     
