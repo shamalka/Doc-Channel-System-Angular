@@ -48,6 +48,15 @@ export class DataService {
     
   }
 
+  loginDoctor(userObject:Object){
+    const url = this.serverUrl + '/users/login/doctor';
+    const obj = {
+      name:"Shamalka"
+    }
+    return this.http.post(url, userObject, {headers: this.getHeaders()});
+    
+  }
+
   registerPatient(object:Object){
     const url = this.serverUrl + '/users/register/patient';
     return this.http.post(url, object, {headers: this.getHeaders()});

@@ -1,19 +1,51 @@
 <div *ngIf="!isLogged"  class="signup-form">
-  <form #loginForm="ngForm" (ngSubmit)="Login()">
-  <h2>Login</h2>
-      <div class="form-group">
-        <input [(ngModel)]="userModel.email" #email="ngModel" type="email" class="form-control" name="email" placeholder="Email" required="required">
-      </div>
-      <div class="form-group">
-          <input [(ngModel)]="userModel.password" #password="ngModel" type="password" class="form-control" name="password" placeholder="Password" required="required">
-      </div>
-      <div class="form-group">
-          <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
-      </div>
-      <div class="text-center">Don't have an account? <a routerLink="/register">Sign up</a></div>
-  </form>
-
+  <div>
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Login as Patient</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Login as Doctor</a>
+          </li>
+        </ul>
+  </div>
   
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <form #loginForm="ngForm" (ngSubmit)="LoginPatient()">
+          <h2>Login</h2>
+              <div *ngIf="errorFlag" class="alert alert-danger">{{ errorText }}</div>
+              <div class="form-group">
+                <input [(ngModel)]="userModel.email" #email="ngModel" type="email" class="form-control" name="email" placeholder="Email" required="required">
+              </div>
+              <div class="form-group">
+                  <input [(ngModel)]="userModel.password" #password="ngModel" type="password" class="form-control" name="password" placeholder="Password" required="required">
+              </div>
+              <div class="form-group">
+                  <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+              </div>
+              <div class="text-center">Don't have an account? <a routerLink="/register">Sign up</a></div>
+        </form>
+    </div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <form #loginForm="ngForm" (ngSubmit)="LoginDoctor()">
+        <h2>Login</h2>
+            <div *ngIf="errorFlag" class="alert alert-danger">{{ errorText }}</div>
+            <div class="form-group">
+              <input [(ngModel)]="userModel.email" #email="ngModel" type="email" class="form-control" name="email" placeholder="Email" required="required">
+            </div>
+            <div class="form-group">
+                <input [(ngModel)]="userModel.password" #password="ngModel" type="password" class="form-control" name="password" placeholder="Password" required="required">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+            </div>
+            <div class="text-center">Don't have an account? <a routerLink="/register">Sign up</a></div>
+      </form>
+    </div>
+    
+  </div>
 </div>
 
 <div *ngIf="isLogged" class="text-center">Already logged in</div>
+

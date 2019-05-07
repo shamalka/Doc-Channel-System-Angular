@@ -45,6 +45,10 @@ body{
     margin-bottom: 30px;
     text-align: center;
 }
+.signup-form .nav-item{
+    width: 50%;
+    text-align: center;
+}
 .signup-form form{
     color: #999;
     border-radius: 3px;
@@ -72,8 +76,8 @@ body{
     padding-left: 10px;
 }    	
 .signup-form a{
-    color: #fff;
-    text-decoration: underline;
+    color: rgb(83, 83, 83);
+    align-content: center;
 }
 .signup-form a:hover{
     text-decoration: none;
@@ -85,3 +89,4 @@ body{
 .signup-form form a:hover{
     text-decoration: underline;
 }  
+
