@@ -7,6 +7,8 @@ import { DoctorsComponent } from './dashboard/doctors/doctors.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AppointmentsComponent } from './dashboard/appointments/appointments.component';
+import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
+import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component';
 
 const routes: Routes = [
   {path:'',component:MainpageComponent,pathMatch:'full'},
@@ -15,7 +17,26 @@ const routes: Routes = [
   {path:'dashboard/doctors',component:DoctorsComponent,pathMatch:'full'},
   {path:'login',component:LoginComponent,pathMatch:'full'},
   {path:'register',component:RegisterComponent,pathMatch:'full'},
-  {path:'appointments',component:AppointmentsComponent,pathMatch:'full'}
+  {path:'appointments',component:AppointmentsComponent,pathMatch:'full'},
+  {
+    path: 'patient',
+    component: AdminLayoutComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: './layout/admin-layout/admin-layout.module#AdminLayoutModule'
+      }
+    ]
+  }, {
+    path: 'patient',
+    component: AuthLayoutComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: './layout/auth-layout/auth-layout.module#AuthLayoutModule'
+      }
+    ]
+  }
 ];
 
 @NgModule({

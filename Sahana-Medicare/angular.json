@@ -33,7 +33,8 @@
               "node_modules/@fortawesome/fontawesome-free/scss/brands.scss",
               "node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss",
               "node_modules/angular-bootstrap-md/scss/mdb-free.scss",
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/scss/argon.scss"
             ],
             "scripts": [
               "node_modules/chart.js/dist/Chart.js",
@@ -145,5 +146,10 @@
       }
     }
   },
-  "defaultProject": "Sahana-Medicare"
+  "defaultProject": "Sahana-Medicare",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }
