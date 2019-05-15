@@ -5,6 +5,7 @@ import { PnavbarComponent } from './pnavbar/pnavbar.component';
 import { PfooterComponent } from './pfooter/pfooter.component';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DsidebarComponent } from './dsidebar/dsidebar.component';
 
 @NgModule({
   imports: [
@@ -15,12 +16,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   declarations: [
     PfooterComponent,
     PnavbarComponent,
-    PsidebarComponent
+    PsidebarComponent,
+    DsidebarComponent
   ],
   exports: [
     PfooterComponent,
     PnavbarComponent,
-    PsidebarComponent
+    PsidebarComponent,
+    DsidebarComponent
   ]
 })
 export class ComponentsModule { }

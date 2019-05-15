@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit{
       console.log(localStorage.getItem('token'));
       console.log(localStorage.getItem('userId'));
       console.log(res);
-      this.router.navigate(['/']);
+      this.router.navigate(['/doctor/doctordashboard']);
       // console.log(this.userModel.email);
       // console.log(this.userModel.password);
     },(err:HttpErrorResponse)=>{

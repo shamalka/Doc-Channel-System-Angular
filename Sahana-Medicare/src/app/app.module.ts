@@ -17,10 +17,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AppointmentsComponent } from './dashboard/appointments/appointments.component';
-import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
+import { PatientLayoutComponent } from './layout/patient-layout/patient-layout.component';
 import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component';
 import { ComponentsModule } from './components/components.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DoctorLayoutComponent } from './layout/doctor-layout/doctor-layout.component';
 
 
 
@@ -36,8 +37,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     LoginComponent,
     RegisterComponent,
     AppointmentsComponent,
-    AdminLayoutComponent,
-    AuthLayoutComponent
+    PatientLayoutComponent,
+    AuthLayoutComponent,
+    DoctorLayoutComponent
   ],
   imports: [
     BrowserModule,

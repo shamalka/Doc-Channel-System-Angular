@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ClipboardModule } from 'ngx-clipboard';
 
-import { AdminLayoutRoutes } from './admin-layout.routing';
+import { PatientLayoutRoutes } from './patient-layout.routing';
 import { PdashboardComponent } from '../../pages/pdashboard/pdashboard.component';
 import { IconsComponent } from '../../pages/icons/icons.component';
 import { MapsComponent } from '../../pages/maps/maps.component';
@@ -18,7 +18,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(AdminLayoutRoutes),
+    RouterModule.forChild(PatientLayoutRoutes),
     FormsModule,
     HttpClientModule,
     NgbModule,
@@ -33,4 +33,4 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   ]
 })
 
-export class AdminLayoutModule {}
+export class PatientLayoutModule {}

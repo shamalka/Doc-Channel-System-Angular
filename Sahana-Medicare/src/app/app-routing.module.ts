@@ -7,8 +7,9 @@ import { DoctorsComponent } from './dashboard/doctors/doctors.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AppointmentsComponent } from './dashboard/appointments/appointments.component';
-import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
+import { PatientLayoutComponent } from './layout/patient-layout/patient-layout.component';
 import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component';
+import { DoctorLayoutComponent } from './layout/doctor-layout/doctor-layout.component';
 
 const routes: Routes = [
   {path:'',component:MainpageComponent,pathMatch:'full'},
@@ -20,11 +21,20 @@ const routes: Routes = [
   {path:'appointments',component:AppointmentsComponent,pathMatch:'full'},
   {
     path: 'patient',
-    component: AdminLayoutComponent,
+    component: PatientLayoutComponent,
     children: [
       {
         path: '',
-        loadChildren: './layout/admin-layout/admin-layout.module#AdminLayoutModule'
+        loadChildren: './layout/patient-layout/patient-layout.module#PatientLayoutModule'
+      }
+    ]
+  },{
+    path: 'doctor',
+    component: DoctorLayoutComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: './layout/doctor-layout/doctor-layout.module#DoctorLayoutModule'
       }
     ]
   }, {
