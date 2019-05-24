@@ -10,6 +10,7 @@ let Appointment = require('../models/appointment');
 let Doctor = require('../models/doctor');
 let Patient = require('../models/patient');
 let User = require('../models/users');
+let Test = require('../models/test');
 
 //Get all appointments
 router.get('/appointments/all', function(req, res){
@@ -66,6 +67,9 @@ router.get('/patients', function(req, res){
         res.json(patients);
     })
 });
+
+//-----------------------------------------------------------------
+//Login and Registration
 
 //Register patient
 router.post('/register/patient', function(req, res){
@@ -184,6 +188,7 @@ router.post('/users/register/:userFlag', function(req, res){
         const gender = req.body.gender;
         const email = req.body.email;
         const password = req.body.password;
+        const doctor = req.body.doctor;
         const telephone = req.body.telephone;
         //const type = req.body.type;
 
@@ -194,6 +199,7 @@ router.post('/users/register/:userFlag', function(req, res){
             newPatient.gender = gender;
             newPatient.email = email;
             newPatient.password = password;
+            newPatient.doctor = doctor;
             newPatient.telephone = telephone;
             //newPatient.type = type;
 
@@ -363,6 +369,89 @@ router.post('/users/login/:userFlag', function(req, res){
     }
 });
 
+//--------------------------------------------------------------
+//Doctor Dashboard
 
+//Get doctor details
+router.get('/doctors/:doctorId', function(req, res){
+    let doctorId = req.params.doctorId;
+    Doctor.find({_id: doctorId}, function(err, doctor){
+        if(err){
+            throw err;
+        }
+        res.json(doctor);
+        
+    })
+});
+
+//Get patients for doctor
+router.get('/doctors/patients/:doctorId', function(req, res){
+    let doctorId = req.params.doctorId;
+    Patient.find({doctor: doctorId}, function(err, patients){
+        if(err){
+            throw err;
+        }
+        res.json(patients);
+        
+    })
+});
+
+//Get appointments for doctor
+router.get('/doctors/appointments/:doctorId', function(req, res){
+    let doctorId = req.params.doctorId;
+    Appointment.find({doctor: doctorId}, function(err, appointments){
+        if(err){
+            throw err;
+        }
+        res.json(appointments);
+        
+    })
+});
+
+
+
+
+
+
+
+
+//----------------------------------------------------------------
+//Test
+//find post
+router.post('/post', function(req, res){
+    const title = req.body;
+    
+    Test.find({title:title}, function(err, posts){
+        if(err){
+            throw err;
+        }
+        res.json(posts);
+        
+    })
+});
+
+//Add Post
+router.post('/addpost/add', function(req, res){
+    var post = req.body;
+    Test.addPost(post, function(err, post){
+        if(err){
+            throw err;
+        }
+        res.json(post);
+        
+    })
+});
+
+//Add Comment
+router.post('/addpost/add', function(req, res){
+    var comment = req.body;
+    Test.addPost(post, function(err, post){
+        if(err){
+            throw err;
+        }
+        res.json(post);
+        
+    })
+});
 
 module.exports = router;

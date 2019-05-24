@@ -5,6 +5,7 @@ export class User {
         public password:string,
         public dob:string,
         public gender:string,
+        public doctor:string,
         public telephone:string){
         
     }

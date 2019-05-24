@@ -39,5 +39,7 @@ app.get('/', function(req, res){
 let api = require('./routes/api');
 app.use('/api', api);
 
+
+
 app.listen(3000);
 console.log('Server running at port 3000...');

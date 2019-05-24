@@ -25,6 +25,15 @@
             <option>Female</option>
           </select>
       </div>
+      <div class="form-group" *ngIf="doctors">
+          
+          <select [(ngModel)]="userModel.doctor" #doctor="ngModel" name="doctor" class="form-control" id="sel12">
+              <option>Select Your Doctor</option>
+              <option>Select Later</option>
+              <option *ngFor="let doctor of doctors">{{ doctor.doctorName }}</option>
+          </select>
+      </div>
+      
       <div class="form-group">
         <input [(ngModel)]="userModel.telephone" #telephone="ngModel" type="text" class="form-control" name="telephone" placeholder="Telephone" required="required">
       </div>          

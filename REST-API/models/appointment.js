@@ -22,6 +22,10 @@ var appointmentSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    doctor:{
+        type: String,
+        required: true
+    },
     message:{
         type: String,
         required: true

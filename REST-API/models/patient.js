@@ -22,6 +22,10 @@ var patientSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    doctor:{
+        type: String,
+        required: true
+    },
     telephone:{
         type: String,
         required: true

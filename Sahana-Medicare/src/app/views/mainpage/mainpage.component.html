@@ -66,11 +66,17 @@
                   </div>
                 </div>
               </div>
-              
+              <div class="form-group" *ngIf="doctors">
+          
+                  <select [(ngModel)]="appointmentModel.doctor" #doctor="ngModel" name="doctor" class="form-control" id="sel12">
+                      <option>Select Your Doctor</option>
+                      <option *ngFor="let doctor of doctors">{{ doctor.doctorName }}</option>
+                  </select>
+              </div>
   
               <div class="form-group">
                 <label for="appointment_message" class="text-black">Message</label>
-                <textarea required [(ngModel)]="appointmentModel.message" #appointment_message="ngModel" name="appointment_message" id="appointment_message" class="form-control" cols="30" rows="5"></textarea>
+                <textarea required [(ngModel)]="appointmentModel.message" #appointment_message="ngModel" name="appointment_message" id="appointment_message" class="form-control" cols="30" rows="3"></textarea>
                 <div class="alert alert-danger" *ngIf="appointment_message.touched && !appointment_message.valid">Message is required.</div>
               </div>
               <div class="form-group">

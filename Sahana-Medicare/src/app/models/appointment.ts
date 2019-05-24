@@ -5,6 +5,7 @@ export class Appointment {
         public email:string, 
         public date:string, 
         public time:string, 
+        public doctor:string,
         public message:string){
 
     }

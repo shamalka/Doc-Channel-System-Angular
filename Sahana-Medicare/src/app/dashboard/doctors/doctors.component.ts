@@ -17,7 +17,7 @@ export class DoctorsComponent implements OnInit {
     userId:this.userId
   }
 
-  appointmentModel = new Appointment('', '', '', '', '', '');
+  appointmentModel = new Appointment('', '', '', '', '', '','');
 
   doctors:Object;
 
@@ -33,10 +33,5 @@ export class DoctorsComponent implements OnInit {
     //this.getAppointments();
   }
 
-  getAppointments(){
-    this.data.getAppointmentsForUser(this.obj).subscribe(data => {
-      console.log(Object.values(data)[0]);
-      console.log(Object.values(Object.values(data)[0])[0]);
-    });
-  }
+
 }

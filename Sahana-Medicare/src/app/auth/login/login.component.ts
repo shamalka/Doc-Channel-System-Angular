@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit{
 
-  userModel = new User('','','','','','');
+  userModel = new User('','','','','','','');
   userObject:object;
 
   isLogged:boolean;
