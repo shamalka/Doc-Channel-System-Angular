@@ -9,6 +9,7 @@ const jwt = require('jsonwebtoken');
 let Appointment = require('../models/appointment');
 let Doctor = require('../models/doctor');
 let Patient = require('../models/patient');
+let Report = require('../models/report');
 let User = require('../models/users');
 let Test = require('../models/test');
 
@@ -19,6 +20,16 @@ router.get('/appointments/all', function(req, res){
             throw err;
         }
         res.json(appointments);
+    })
+});
+
+//get all reports
+router.get('/reports/all', function(req, res){
+    Report.getReports(function(err, reports){
+        if(err){
+            throw err;
+        }
+        res.json(reports);
     })
 });
 
@@ -408,11 +419,83 @@ router.get('/doctors/appointments/:doctorId', function(req, res){
     })
 });
 
+//Update doctor
+
+//Add report
+router.post('/reports/add', function(req, res){
+    //get data from header
+    const doctorId = req.body.doctorId;
+    const patientId = req.body.patientId;
+    const patientName = req.body.patientName;
+    const description = req.body.description;
+    const prescription = req.body.prescription;
+    const nextDate = req.body.nextDate;
+
+    //set data to Report object
+    let newReport = new Report();
+        newReport.doctorId = doctorId;
+        newReport.patientId = patientId;
+        newReport.patientName = patientName;
+        newReport.description = description;
+        newReport.prescription = prescription;
+        newReport.nextDate = nextDate;
+
+        //Add report object to collection
+        newReport.save(function(err){
+            if(err){
+                console.log(err);
+                return;
+            } else{
+                res.json(newReport);
+            }
+        });
+});
+
+//Set Availability
+router.post('/doctors/availability/:doctorId/:status', function(req, res){
+    let doctorId = req.params.doctorId;
+    let status = req.params.status;
+
+    Doctor.findOneAndUpdate({_id : doctorId}, {$set: {availability : status}}, function(err, doctor){
+        if(err){
+            console.log(err);
+            return;
+        } else{
+            res.json(doctor);
+        }
+    })
+});
 
 
+//----------------------------------------------------------------
+//Patient Dashboard
 
+//get patient
+//Get doctor details
+router.get('/patients/:patientId', function(req, res){
+    let patientId = req.params.patientId;
+    Patient.find({_id: patientId}, function(err, patient){
+        if(err){
+            throw err;
+        }
+        res.json(patient);
+        
+    })
+});
 
+//Get patient's appointments
+router.get('/patients/appointments/:patientId', function(req, res){
+    let patientId = req.params.patientId;
+    Appointment.find({userId: patientId}, function(err, appointments){
+        if(err){
+            throw err;
+        }
+        res.json(appointments);
+        
+    })
+});
 
+//Get patient's reports
 
 
 //----------------------------------------------------------------

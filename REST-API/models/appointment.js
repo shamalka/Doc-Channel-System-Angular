@@ -45,7 +45,7 @@ module.exports.getAppointments = function(callback, limit){
     Appointment.find(callback).limit(limit);
 }
 
-// Get Appointments
+// Add Appointments
 module.exports.addAppointment = function(appointment, callback){
     Appointment.create(appointment, callback);
 }

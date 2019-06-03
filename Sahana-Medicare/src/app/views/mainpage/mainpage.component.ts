@@ -16,6 +16,8 @@ export class MainpageComponent implements OnInit {
     userId:string = localStorage.getItem('userId');
     appointmentModel = new Appointment(this.userId, '', '', '', '', '','');
     appointmentObject:Object;
+
+ 
     
     userName: string;
     doctors:Object;
@@ -27,7 +29,7 @@ export class MainpageComponent implements OnInit {
     ngOnInit() {
       //Set Username
       if(localStorage.getItem('token')!=null){
-        this.userName = localStorage.getItem('userName');
+        this.userName = localStorage.getItem('username');
         console.log(this.userName);
       }
 

@@ -1,0 +1,25 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row" *ngIf="patientModel">
+        <div class="col-sm-4" *ngFor="let patient of patientModel">
+                <div class="card card-chart">
+                        <div class="card-header card-header-success">
+                            <h4 class="card-title">{{ patient.fullName }}</h4>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-title">{{ patient.dob }}</p>
+                            <p class="card-title">{{ patient.gender }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">{{ patient.email }}</div>
+                            <div class="stats">{{ patient.telephone }}</div>
+                        </div>
+                        <button mat-raised-button type="submit" class="btn btn-danger pull-right" (click)="openDialog()">Issue Report</button>
+                        <button mat-raised-button type="submit" class="btn btn-danger pull-right">Previous Reports</button>
+                </div>
+                
+                
+        </div>
+    </div>
+  </div>
+</div>

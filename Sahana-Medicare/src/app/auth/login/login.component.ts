@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit{
       localStorage.setItem('token',JSON.stringify(Object.values(res)[0]));
       localStorage.setItem('userId',JSON.stringify(Object.values(res)[1]));
       localStorage.setItem('userName',JSON.stringify(Object.values(res)[2]));
+      localStorage.setItem('role', "patient");
       console.log(localStorage.getItem('token'));
       console.log(localStorage.getItem('userId'));
       console.log(res);
@@ -74,6 +75,7 @@ export class LoginComponent implements OnInit{
       localStorage.setItem('token',JSON.stringify(Object.values(res)[0]));
       localStorage.setItem('userId',JSON.stringify(Object.values(res)[1]));
       localStorage.setItem('userName',JSON.stringify(Object.values(res)[2]));
+      localStorage.setItem('role', "doctor");
       console.log(localStorage.getItem('token'));
       console.log(localStorage.getItem('userId'));
       console.log(res);

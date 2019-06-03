@@ -59,8 +59,8 @@
             <mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon>
             <div class="dropdown-menu dropdown-menu-right dropdown-primary">
               <a class="dropdown-item" href="#">{{ userName }}</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
+              <a *ngIf="isDoctor" class="dropdown-item" href="#">My Patients</a>
+              <a *ngIf="isPatient" class="dropdown-item" href="#">My Reports</a>
               <div class="divider dropdown-divider"></div>
               <a class="dropdown-item" href="#">Separated link</a>
             </div>

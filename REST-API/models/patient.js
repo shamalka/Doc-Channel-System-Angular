@@ -43,6 +43,11 @@ module.exports.getPatients = function(callback, limit){
     Patient.find(callback).limit(limit);
 }
 
+// Get Patients
+module.exports.getPatients = function(callback, limit){
+    Patient.find(callback).limit(limit);
+}
+
 // Register Patient
 // module.exports.registerPatient = function(patient, callback){
 //     Patient.create(patient, callback);

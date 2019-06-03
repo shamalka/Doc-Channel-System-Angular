@@ -39,7 +39,7 @@
           </div>
           <div class="modal-body">
             <form #appointmentForm="ngForm" (ngSubmit)="onSubmit()">
-            
+             
               <div class="form-group">
                 <label for="appointment_name" class="text-black">Full Name</label>
                 <input required [(ngModel)]="appointmentModel.fullName" #appointment_name="ngModel" name="appointment_name" type="text" class="form-control" id="appointment_name">
