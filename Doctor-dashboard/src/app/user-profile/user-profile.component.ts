@@ -10,17 +10,32 @@ import { Observable } from 'rxjs';
 })
 export class UserProfileComponent implements OnInit {
 
-  public doctorModel = [];
+  public dataModel = [];
+  public isPatient:boolean;
 
   constructor(private http: HttpClient, private data: DataService) { }
 
   ngOnInit() {
-    this.getDoctor();
+    if(this.data.isPatient()){
+      this.getPatient();
+      this.isPatient=true;
+    }else{
+      this.getDoctor();
+      this.isPatient=false;
+    }
+    
   }
 
   getDoctor(){
     this.data.getDocDetails("5cebb19ef6cdcd5384706669").subscribe(data => {
-      this.doctorModel = data;
+      this.dataModel = data;
+      console.log(data);
+    })
+  }
+
+  getPatient(){
+    this.data.getPatientDetails("5cebb7929ef351617808ac10").subscribe(data => {
+      this.dataModel = data;
       console.log(data);
     })
   }

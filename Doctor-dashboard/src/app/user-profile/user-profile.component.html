@@ -1,5 +1,5 @@
 <div class="main-content">
-  <div class="container-fluid" *ngIf="doctorModel">
+  <div class="container-fluid" *ngIf="dataModel">
       <div class="row">
           <div class="col-md-8">
               <div class="card">
@@ -7,19 +7,20 @@
                       <h4 class="card-title">Edit Profile</h4>
                       <p class="card-category"></p>
                   </div>
-                  <div class="card-body" *ngFor="let doctor of doctorModel">
+                  <div class="card-body" *ngFor="let data of dataModel">
                       <form>
                           <div class="row">
                              <!-- placeholder="Company (disabled)" -->
                           
                               <div class="col-md-6">
                                 <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Name" type="text" value="{{ doctor.doctorName }}">
+                                  <input *ngIf="isPatient" matInput placeholder="Name" type="text" value="{{ data.fullName }}">  
+                                  <input *ngIf="!isPatient" matInput placeholder="Name" type="text" value="{{ data.doctorName }}">          
                                 </mat-form-field>
                               </div>
                               <div class="col-md-6">
                                 <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Email" type="text" value="{{ doctor.email }}">
+                                  <input matInput placeholder="Email" type="text" value="{{ data.email }}">
                                 </mat-form-field>
                               </div>
                           </div>
@@ -27,13 +28,22 @@
                           <div class="row">
                               <div class="col-md-4">
                                 <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Arrival Time" type="text" value="{{ doctor.arrivalTime }}">
+                                  <input *ngIf="isPatient" matInput placeholder="Date Of Birth" type="text" value="{{ data.dob }}">
+                                  <input *ngIf="!isPatient" matInput placeholder="Arrival Time" type="text" value="{{ data.arrivalTime }}">
                                 </mat-form-field>
                               </div>
                               <div class="col-md-4">
                                 <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Departure Time" type="text" value="{{ doctor.departureTime }}">
+                                    <input *ngIf="isPatient" matInput placeholder="Gender" type="text" value="{{ data.gender }}">
+                                  <input *ngIf="!isPatient" matInput placeholder="Departure Time" type="text" value="{{ data.departureTime }}">
                                 </mat-form-field>
+                                
+                              </div>
+                              <div *ngIf="isPatient" class="col-md-4">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Telephone" type="text" value="{{ data.telephone }}">
+                                    
+                                  </mat-form-field>
                               </div>
                           </div>
                           <div class="row">

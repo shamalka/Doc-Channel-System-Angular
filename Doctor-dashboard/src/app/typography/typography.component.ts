@@ -14,7 +14,9 @@ import { ReportsComponent } from 'app/components/reports/reports.component';
 export class TypographyComponent implements OnInit {
 
   public patientModel = [];
+  public reportsModel = [];
   animal: string = "dog";
+  public isPatient:boolean;
 
 
   ReportData:object;
@@ -22,7 +24,22 @@ export class TypographyComponent implements OnInit {
   constructor(private http: HttpClient, private data: DataService, public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.getPatients();
+    if(this.data.isPatient()){
+      this.getReports();
+      this.isPatient = true;
+    }else{
+      this.getPatients();
+      this.isPatient = false;
+    }
+    
+  }
+
+  getReports(){
+    this.data.getPatientReports("5cf77d5c27954f24b04b8006").subscribe(data => {
+      this.reportsModel = data;
+      console.log(data);
+
+    })
   }
 
   getPatients(){

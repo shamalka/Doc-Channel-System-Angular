@@ -21,7 +21,7 @@ export class ReportsComponent implements OnInit {
   }
 
   getReports(){
-      this.dataService.getPatientReports(this.data.id, 'doc_id').subscribe(dataService => {
+      this.dataService.getPatientDocReports(this.data.id, 'doc_id').subscribe(dataService => {
       this.reportsModel = dataService;
       console.log(dataService);
     })

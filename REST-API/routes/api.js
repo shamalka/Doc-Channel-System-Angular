@@ -455,7 +455,7 @@ router.post('/reports/add', function(req, res){
         });
 });
 
-//Get reports for patient
+//Get reports for patient and doctor
 router.get('/reports/:patientId/:doctorId', function(req, res){
     let patientId = req.params.patientId;
     let doctorId = req.params.doctorId;
@@ -512,8 +512,20 @@ router.get('/patients/appointments/:patientId', function(req, res){
     })
 });
 
-//Get patient's reports
+//get reports for patients only
 
+
+//Get patient's reports
+router.get('/reports/:patientId', function(req, res){
+    let patientId = req.params.patientId;
+    Report.find({patientId: patientId}, function(err, reports){
+        if(err){
+            throw err;
+        }
+        res.json(reports);
+        
+    })
+});
 
 //----------------------------------------------------------------
 //Test

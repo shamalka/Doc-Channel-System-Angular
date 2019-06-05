@@ -47,14 +47,29 @@ export class DataService {
     return this.http.get<Doctor[]>(url);
   }
 
+  //get patient details
+  getPatientDetails(PatientId:string): Observable<Patient[]>{
+    const url = this.serverUrl + '/patients/' + PatientId;
+    return this.http.get<Patient[]>(url);
+  }
+
   AddReport(object:Object){
     const url = this.serverUrl + '/reports/add';
     return this.http.post(url, object, {headers: this.getHeaders()});
   }
   
-  getPatientReports(PatientId:string, DoctorId:string): Observable<Report[]>{
+  getPatientDocReports(PatientId:string, DoctorId:string): Observable<Report[]>{
     const url = this.serverUrl + '/reports/' + PatientId + '/' + DoctorId;
     return this.http.get<Report[]>(url);
+  }
+
+  getPatientReports(PatientId:string): Observable<Report[]>{
+    const url = this.serverUrl + '/reports/' + PatientId;
+    return this.http.get<Report[]>(url);
+  }
+
+  isPatient(){
+    return true;
   }
 
 }
