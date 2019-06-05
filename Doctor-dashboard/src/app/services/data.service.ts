@@ -5,6 +5,7 @@ import { Appointment } from 'app/models/appointment';
 import { Observable } from 'rxjs';
 import { Patient } from 'app/models/patient';
 import { Doctor } from 'app/models/doctor';
+import { Report } from 'app/models/report';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,14 @@ export class DataService {
   serverUrl:string = "http://localhost:3000/api";
 
   constructor(private http:HttpClient, private router: Router) { }
+
+  private getHeaders(){
+    // I included these headers because otherwise FireFox
+    // will request text/html
+    let headers = new HttpHeaders();
+    headers.append('Accept', 'application/json');
+    return headers;
+  }
 
   //get All Appointments
   getAppointments(){
@@ -36,6 +45,16 @@ export class DataService {
   getDocDetails(DoctorId:string): Observable<Doctor[]>{
     const url = this.serverUrl + '/doctors/' + DoctorId;
     return this.http.get<Doctor[]>(url);
+  }
+
+  AddReport(object:Object){
+    const url = this.serverUrl + '/reports/add';
+    return this.http.post(url, object, {headers: this.getHeaders()});
+  }
+  
+  getPatientReports(PatientId:string, DoctorId:string): Observable<Report[]>{
+    const url = this.serverUrl + '/reports/' + PatientId + '/' + DoctorId;
+    return this.http.get<Report[]>(url);
   }
 
 }

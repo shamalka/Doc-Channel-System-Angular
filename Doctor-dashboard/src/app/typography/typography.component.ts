@@ -4,6 +4,7 @@ import { DataService } from 'app/services/data.service';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material';
 import { ReportformComponent } from 'app/components/reportform/reportform.component';
+import { ReportsComponent } from 'app/components/reports/reports.component';
 
 @Component({
   selector: 'app-typography',
@@ -14,7 +15,7 @@ export class TypographyComponent implements OnInit {
 
   public patientModel = [];
   animal: string = "dog";
-  name: string;
+
 
   ReportData:object;
 
@@ -25,17 +26,30 @@ export class TypographyComponent implements OnInit {
   }
 
   getPatients(){
-    this.data.getDocPatients("Select Later").subscribe(data => {
+    this.data.getDocPatients("Dr. Glen").subscribe(data => {
       this.patientModel = data;
-      this.name = data[0].fullName;
+      console.log(data);
+
     })
   }
 
-  openDialog(): void {
+  openAddReportDialog(id:string, name:string, dob:string, gender:string): void {
     const dialogRef = this.dialog.open(ReportformComponent, {
       width: '500px',
       height: '500px',
-      data: {name: this.name}
+      data: {id: id, name: name, dob: dob, gender: gender}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
+  }
+
+  openAllReportsDialog(id:string): void {
+    const dialogRef = this.dialog.open(ReportsComponent, {
+      width: '800px',
+      height: '500px',
+      data: { id: id }
     });
 
     dialogRef.afterClosed().subscribe(result => {

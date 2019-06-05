@@ -15,6 +15,7 @@ import {
   MatSelectModule,
   MatDialogModule
 } from '@angular/material';
+import { ReportsComponent } from './reports/reports.component';
 
 @NgModule({
   imports: [
@@ -33,13 +34,14 @@ import {
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
-    ReportformComponent
+    ReportformComponent,
+    ReportsComponent
   ],
   exports: [
     FooterComponent,
     NavbarComponent,
     SidebarComponent
   ],
-  entryComponents: [ReportformComponent]
+  entryComponents: [ReportformComponent, ReportsComponent]
 })
 export class ComponentsModule { }

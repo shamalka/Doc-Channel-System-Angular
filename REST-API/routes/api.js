@@ -427,6 +427,8 @@ router.post('/reports/add', function(req, res){
     const doctorId = req.body.doctorId;
     const patientId = req.body.patientId;
     const patientName = req.body.patientName;
+    const dob = req.body.dob;
+    const gender = req.body.gender;
     const description = req.body.description;
     const prescription = req.body.prescription;
     const nextDate = req.body.nextDate;
@@ -436,6 +438,8 @@ router.post('/reports/add', function(req, res){
         newReport.doctorId = doctorId;
         newReport.patientId = patientId;
         newReport.patientName = patientName;
+        newReport.dob = dob;
+        newReport.gender = gender;
         newReport.description = description;
         newReport.prescription = prescription;
         newReport.nextDate = nextDate;
@@ -449,6 +453,19 @@ router.post('/reports/add', function(req, res){
                 res.json(newReport);
             }
         });
+});
+
+//Get reports for patient
+router.get('/reports/:patientId/:doctorId', function(req, res){
+    let patientId = req.params.patientId;
+    let doctorId = req.params.doctorId;
+    Report.find({doctorId: doctorId , patientId: patientId}, function(err, reports){
+        if(err){
+            throw err;
+        }
+        res.json(reports);
+        
+    })
 });
 
 //Set Availability
