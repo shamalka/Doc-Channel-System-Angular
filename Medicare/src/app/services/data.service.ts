@@ -69,7 +69,69 @@ export class DataService {
   }
 
   isPatient(){
-    return false;
+    if(localStorage.getItem('role')=='patient'){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  addAppointment(object:Object){
+    const url = this.serverUrl + '/appointments/add';
+
+    return this.http.post(url, object, {headers: this.getHeaders()});
+  }
+
+  getAppointmentsForUser(object:Object){
+    const url = this.serverUrl + '/appointments/user';
+
+    return this.http.post(url, object, {headers: this.getHeaders()});
+  }
+
+  getDoctors(){
+    return this.http.get( this.serverUrl + '/doctors');
+  }
+
+  loginPatient(userObject:Object){
+    const url = this.serverUrl + '/users/login/patient';
+    const obj = {
+      name:"Shamalka"
+    }
+    return this.http.post(url, userObject, {headers: this.getHeaders()});
+    
+  }
+
+  loginDoctor(userObject:Object){
+    const url = this.serverUrl + '/users/login/doctor';
+    const obj = {
+      name:"Shamalka"
+    }
+    return this.http.post(url, userObject, {headers: this.getHeaders()});
+    
+  }
+
+  registerPatient(object:Object){
+    const url = this.serverUrl + '/users/register/patient';
+    return this.http.post(url, object, {headers: this.getHeaders()});
+  }
+
+  isLoggedin(){
+    console.log(localStorage.getItem('token'))
+    if(localStorage.getItem('token')!=null){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  logoutUser(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    localStorage.removeItem('userName');
+    this.router.navigate(['/home']);
+    this.router.routeReuseStrategy.shouldReuseRoute = function(){
+      return false;
+  };
   }
 
 }

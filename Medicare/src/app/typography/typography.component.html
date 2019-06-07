@@ -1,0 +1,48 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row" *ngIf="patientModel && !isPatient">
+        <div class="col-sm-4" *ngFor="let patient of patientModel">
+                <div class="card card-chart">
+                        
+                        <div id="fname" class="card-header card-header-success">
+                            <h4 id="full_name" class="card-title">{{ patient.fullName }}</h4>
+                        </div>
+                        {{ name }}
+                        <div class="card-body">
+                            <p class="card-title">{{ patient.dob }}</p>
+                            <p class="card-title">{{ patient.gender }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">{{ patient.email }}</div>
+                            <div class="stats">{{ patient.telephone }}</div>
+                        </div>
+                        <div class="btnclass">
+                            <button mat-raised-button type="submit" class="btn btn-danger pull-right" (click)="openAddReportDialog(patient._id, patient.fullName , patient.dob , patient.gender)">Issue Report</button>
+                            <button mat-raised-button type="submit" class="btn btn-danger pull-right" (click)="openAllReportsDialog(patient._id)">Previous Reports</button>
+                        </div>
+                        
+                </div>
+                
+                
+        </div>
+    </div>
+
+    <div *ngIf="reportsModel && isPatient">
+            <div *ngFor="let report of reportsModel">
+                <div class="card card-chart">
+                    <div class="card-header card-header-warning">
+                    <h4 class="card-title">{{ report.patientName }}'s Report</h4>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">{{ report.description }}</h4>
+                        <p class="card-category">{{ report.prescription }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">access_time</i> campaign sent 2 days ago
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

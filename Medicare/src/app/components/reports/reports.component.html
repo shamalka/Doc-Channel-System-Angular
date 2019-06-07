@@ -1,0 +1,18 @@
+<div *ngIf="reportsModel">
+    <div *ngFor="let report of reportsModel">
+        <div class="card card-chart">
+            <div class="card-header card-header-warning">
+            <h4 class="card-title">{{ report.patientName }}'s Report</h4>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">{{ report.description }}</h4>
+                <p class="card-category">{{ report.prescription }}</p>
+            </div>
+            <div class="card-footer">
+                <div class="stats">
+                    <i class="material-icons">access_time</i> campaign sent 2 days ago
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

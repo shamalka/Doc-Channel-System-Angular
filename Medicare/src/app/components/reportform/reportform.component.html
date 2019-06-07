@@ -1,0 +1,18 @@
+<ol>
+  <li>
+    <mat-form-field>
+      <input matInput [(ngModel)]="reportModel.description" #report_description="ngModel" name="report_description" placeholder="Description">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="reportModel.prescription" #report_prescription="ngModel" name="report_prescription" placeholder="Prescription">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="reportModel.nextDate" #report_nextdate="ngModel" name="report_nextdate" placeholder="Next Date">
+    </mat-form-field>
+  
+  </li>
+
+    <button mat-raised-button (click)="AddReport()">Submit</button>
+
+
+</ol>

@@ -40,8 +40,8 @@ export class LoginComponent implements OnInit{
     }
     //console.log(this.userObject);
     this.data.loginPatient(this.userObject).subscribe(res => {
-      localStorage.setItem('token',JSON.stringify(Object.values(res)[0]));
-      localStorage.setItem('userId',JSON.stringify(Object.values(res)[1]));
+      localStorage.setItem('token',JSON.stringify(res[0]));
+      localStorage.setItem('userId',JSON.stringify(res[1]));
       localStorage.setItem('userName',JSON.stringify(Object.values(res)[2]));
       localStorage.setItem('role', "patient");
       console.log(localStorage.getItem('token'));
@@ -72,9 +72,9 @@ export class LoginComponent implements OnInit{
     }
     //console.log(this.userObject);
     this.data.loginDoctor(this.userObject).subscribe(res => {
-      localStorage.setItem('token',JSON.stringify(Object.values(res)[0]));
-      localStorage.setItem('userId',JSON.stringify(Object.values(res)[1]));
-      localStorage.setItem('userName',JSON.stringify(Object.values(res)[2]));
+      localStorage.setItem('token',JSON.stringify(res[0]));
+      localStorage.setItem('userId',JSON.stringify(res[1]));
+      localStorage.setItem('userName',JSON.stringify(res[2]));
       localStorage.setItem('role', "doctor");
       console.log(localStorage.getItem('token'));
       console.log(localStorage.getItem('userId'));

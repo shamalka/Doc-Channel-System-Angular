@@ -1,0 +1,123 @@
+<!-- Jumbotron -->
+<app-home-navbar></app-home-navbar>
+
+<div class="jumbotron bg">
+  <router-outlet></router-outlet>
+  <!-- Title -->
+  <div class="text-center">
+      <!-- Title -->
+      <h2 class="card-title h2 text-warning">Sahana Medicare</h2>
+      <h2 class="card-title h2 text-warning">{{ userName }}</h2>
+      <!-- Subtitle -->
+      <p class="blue-text my-4 font-weight-bold text-white">Brings the eChannelling on your door step</p>
+  </div>
+  
+  <!-- Grid row -->
+  <div class="row d-flex justify-content-center">
+
+    <!-- Grid column -->
+    <div class="col-xl-7 pb-2">
+
+      <p class="card-text text-white">Sahana Medicare has partnered with eChannelling to create the smartest way to channel your doctor in our dispensary. Book an appointment with over 20 specialized doctors in just 3 taps.</p>
+
+    </div>
+    <!-- Grid column -->
+
+  </div>
+  <!-- Grid row -->
+
+  <hr class="my-4">
+  
+  <div>
+    <!-- Modal -->
+  <div class="modal fade" id="modalAppointment" tabindex="-1" role="dialog" aria-labelledby="modalAppointmentLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalAppointmentLabel">Appointment</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form #appointmentForm="ngForm" (ngSubmit)="onSubmit()">
+             
+              <div class="form-group">
+                <label for="appointment_name" class="text-black">Full Name</label>
+                <input required [(ngModel)]="appointmentModel.fullName" #appointment_name="ngModel" name="appointment_name" type="text" class="form-control" id="appointment_name">
+                <div class="alert alert-danger" *ngIf="appointment_name.touched && !appointment_name.valid">Full name is required.</div>
+              </div>
+              <div class="form-group">
+                <label for="appointment_email" class="text-black">Email</label>
+                <input required [(ngModel)]="appointmentModel.email" #appointment_email="ngModel" name="appointment_email" type="text" class="form-control" id="appointment_email">
+                <div class="alert alert-danger" *ngIf="appointment_email.touched && !appointment_email.valid">Email is required.</div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="appointment_date" class="text-black">Date</label>
+                    <input required [(ngModel)]="appointmentModel.date" #appointment_date="ngModel" name="appointment_date" type="date" class="form-control" id="appointment_date">
+                    <div class="alert alert-danger" *ngIf="appointment_date.touched && !appointment_date.valid">Date is required.</div>
+                  </div>    
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="appointment_time" class="text-black">Time</label>
+                    <input required [(ngModel)]="appointmentModel.time" #appointment_time="ngModel" name="appointment_time" type="time" class="form-control" id="appointment_time">
+                    <div class="alert alert-danger" *ngIf="appointment_time.touched && !appointment_time.valid">Time is required.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group" *ngIf="doctors">
+          
+                  <select [(ngModel)]="appointmentModel.doctor" #doctor="ngModel" name="doctor" class="form-control" id="sel12">
+                      <option>Select Your Doctor</option>
+                      <option *ngFor="let doctor of doctors">{{ doctor.doctorName }}</option>
+                  </select>
+              </div>
+  
+              <div class="form-group">
+                <label for="appointment_message" class="text-black">Message</label>
+                <textarea required [(ngModel)]="appointmentModel.message" #appointment_message="ngModel" name="appointment_message" id="appointment_message" class="form-control" cols="30" rows="3"></textarea>
+                <div class="alert alert-danger" *ngIf="appointment_message.touched && !appointment_message.valid">Message is required.</div>
+              </div>
+              <div class="form-group">
+                <input type="submit" value="Send Message" class="btn btn-primary">
+              </div>
+            </form>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+<div class="text-center">
+  <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalAppointment" (onClick)="goToAppointment()">Make Appointment</a>
+</div>
+
+<button type="button" class="btn btn-primary">Primary</button>
+
+<form>
+  <div class="form-group">
+    <label for="firstName">First Name</label>
+    <input ngModel name="firstName" #firstName="ngModel" (change)="log(firstName)" id="firstName" type="text" class="form-control">
+  </div>
+
+  <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input id="lastName" type="text" class="form-control">
+  </div>
+  <button class="btn btn-primary">Submit</button>
+</form>
+
+<button class="btn btn-primary" (click)="isLogged()">Check Login</button>
+<button class="btn btn-primary" (click)="Logout()">Logout</button>
+
+
+
+
+
+</div>
+<!-- Jumbotron -->
