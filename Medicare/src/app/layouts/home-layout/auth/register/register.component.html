@@ -20,8 +20,11 @@
               <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required="required">
           </div>
         <div class="form-group">
-            <div class="text-left">Date of birth</div>
-          <input [(ngModel)]="userModel.dob" #dob="ngModel" type="date" class="form-control" name="dob" placeholder="Date of birth" required="required">
+            <mat-form-field>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="userModel.dob" #dob="ngModel" name="dob" placeholder="Date of birth" required="required">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
         </div>
         <div class="form-group">
             <!-- <select >

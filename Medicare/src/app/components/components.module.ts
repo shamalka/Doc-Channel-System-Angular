@@ -6,6 +6,7 @@ import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ReportformComponent } from './reportform/reportform.component';
+
 import {
   MatButtonModule,
   MatInputModule,
@@ -14,12 +15,16 @@ import {
   MatTooltipModule,
   MatSelectModule,
   MatDialogModule,
-  MatCardModule
+  MatCardModule,
+  MatProgressSpinnerModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 } from '@angular/material';
 
 import { ReportsComponent } from './reports/reports.component';
 import { LoginComponent } from 'app/layouts/home-layout/auth/login/login.component';
 import { RegisterComponent } from 'app/layouts/home-layout/auth/register/register.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
@@ -33,7 +38,11 @@ import { RegisterComponent } from 'app/layouts/home-layout/auth/register/registe
     MatSelectModule,
     MatTooltipModule,
     MatDialogModule,
-    MatCardModule
+    MatCardModule,
+    MatProgressSpinnerModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   declarations: [
     FooterComponent,

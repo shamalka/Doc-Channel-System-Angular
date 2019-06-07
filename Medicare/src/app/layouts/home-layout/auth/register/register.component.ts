@@ -12,7 +12,7 @@ import { User } from 'app/models/user';
 })
 export class RegisterComponent implements OnInit {
 
-  userModel = new User('','','','','','','');
+  userModel = new User('','','','','','doctor','');
   doctors:Object;
   genders: any[] = [
     {value: 'Male', viewValue: 'Male'},
@@ -23,13 +23,13 @@ export class RegisterComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any, private router:Router,private servicedata:DataService, private http:HttpClient) { }
 
   ngOnInit() {
-    this.getDoctors();
   }
 
-  getDoctors(){
-    this.data.getDoctors().subscribe((data:any) =>{
-      this.doctors = data;
-      // console.log(this.userId);
+  Register(){
+    this.servicedata.registerPatient(this.userModel).subscribe((data:any) => {
+      console.log(data);
+      this.dialogRef.close();
+      this.router.navigate(['/home']);
     });
   }
 

@@ -7,7 +7,9 @@
       <input matInput [(ngModel)]="reportModel.prescription" #report_prescription="ngModel" name="report_prescription" placeholder="Prescription">
     </mat-form-field>
     <mat-form-field>
-      <input matInput [(ngModel)]="reportModel.nextDate" #report_nextdate="ngModel" name="report_nextdate" placeholder="Next Date">
+        <input matInput [matDatepicker]="picker" [(ngModel)]="reportModel.nextDate" #report_nextdate="ngModel" name="report_nextdate" placeholder="Next Date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
   
   </li>

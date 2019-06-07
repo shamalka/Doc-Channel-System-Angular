@@ -1,9 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { DataService } from 'app/services/data.service';
 import { User } from 'app/models/user';
+import { RegisterComponent } from '../register/register.component';
+
 
 @Component({
   selector: 'app-login',
@@ -22,7 +24,7 @@ export class LoginComponent implements OnInit {
   errorFlag:boolean=false;
   errorText:string;
 
-  constructor(public dialogRef: MatDialogRef<LoginComponent>,
+  constructor(public dialog: MatDialog, public dialogRef: MatDialogRef<LoginComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private router:Router,private servicedata:DataService, private http:HttpClient) { }
 
   ngOnInit() {
@@ -93,6 +95,18 @@ export class LoginComponent implements OnInit {
       console.log(err.error);
       this.errorFlag = true;
       this.errorText = err.error;
+    });
+  }
+
+  openRegisterForm(){
+    const dialogRef = this.dialog.open(RegisterComponent, {
+      width: '500px',
+      height: '700px',
+      
+    });
+    this.dialogRef.close();
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
     });
   }
 

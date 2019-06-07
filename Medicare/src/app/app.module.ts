@@ -25,6 +25,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { MainpageComponent } from './layouts/home-layout/mainpage/mainpage.component';
 import { HomeNavbarComponent } from './layouts/home-layout/home-navbar/home-navbar.component';
 import { LoginComponent } from './layouts/home-layout/auth/login/login.component';
+import { HomeMidComponent } from './layouts/home-layout/home-mid/home-mid.component';
 
 
 
@@ -45,6 +46,7 @@ import { LoginComponent } from './layouts/home-layout/auth/login/login.component
     AdminLayoutComponent,
     MainpageComponent,
     HomeNavbarComponent,
+    HomeMidComponent,
 
 
   ],
