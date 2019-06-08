@@ -19,7 +19,10 @@ import {
   MatFormFieldModule,
   MatTooltipModule,
   MatSelectModule,
-  MatDialogModule
+  MatDialogModule,
+  MatChipsModule,
+  MatSnackBarModule,
+  MatSlideToggleModule
 } from '@angular/material';
 @NgModule({
   imports: [
@@ -32,7 +35,10 @@ import {
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
-    MatDialogModule
+    MatDialogModule,
+    MatChipsModule,
+    MatSnackBarModule,
+    MatSlideToggleModule
   ],
   declarations: [
     DashboardComponent,

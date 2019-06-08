@@ -32,6 +32,7 @@ export class TypographyComponent implements OnInit {
       this.isPatient = true;
     }else{
       this.docName = localStorage.getItem('userName');
+      this.userId = localStorage.getItem('userId');
       this.getPatients();
       this.isPatient = false;
     }
@@ -47,9 +48,9 @@ export class TypographyComponent implements OnInit {
   }
 
   getPatients(){
-    this.data.getDocPatients(this.docName).subscribe(data => {
+    this.data.getDocPatients(this.userId).subscribe(data => {
       this.patientModel = data;
-      console.log(data);
+      console.log(this.userId);
 
     })
   }

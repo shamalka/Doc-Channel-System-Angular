@@ -1,6 +1,5 @@
 export class Appointment {
     constructor(
-        public _id:string,
         public userId:string,
         public fullName:string, 
         public email:string, 
@@ -8,6 +7,7 @@ export class Appointment {
         public time:string, 
         public doctor:string,
         public message:string,
+        public status:string,
         public create_date:string){
     }
 }

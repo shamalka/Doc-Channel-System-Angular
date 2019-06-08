@@ -26,6 +26,12 @@
                                   <th>
                                       Created Date
                                   </th>
+                                  <th>
+                                      Status
+                                  </th>
+                                  <th>
+                                      Action
+                                  </th>
                               </thead>
                               <tbody>
                                   <tr *ngFor="let appointment of appointmentModel">
@@ -42,7 +48,29 @@
                                           {{ appointment.message }}
                                       </td>
                                       <td class="text-primary">
-                                          {{ appointment.create_date }}
+                                          {{ appointment.userId }}
+                                      </td>
+                                      <td>
+                                        <mat-chip-list aria-label="Fish selection" *ngIf="appointment.status === 'pending'">
+                                            <mat-chip color="accent" selected>{{ appointment.status }}</mat-chip>
+                                        </mat-chip-list>
+                                        <mat-chip-list aria-label="Fish selection" *ngIf="appointment.status === 'accepted'">
+                                            <mat-chip color="primary" selected>{{ appointment.status }}</mat-chip>
+                                        </mat-chip-list>
+                                        <mat-chip-list aria-label="Fish selection" *ngIf="appointment.status === 'rejected'">
+                                            <mat-chip color="warn" selected>{{ appointment.status }}</mat-chip>
+                                        </mat-chip-list>
+                                        <mat-chip-list aria-label="Fish selection" *ngIf="appointment.status === 'finished'">
+                                            <mat-chip>{{ appointment.status }}</mat-chip>
+                                        </mat-chip-list>
+                                      </td>
+                                      <td *ngIf="!isPatient">
+                                        <button mat-stroked-button color="primary" (click)="setStatus(appointment._id, 'accepted', appointment.userId)">Accept</button>
+                                        <button mat-stroked-button color="warn" (click)="setStatus(appointment._id, 'rejected', appointment.userId)">Reject</button>
+                                        <button mat-stroked-button (click)="setStatus(appointment._id, 'finished', appointment.userId)">Finish</button>
+                                      </td>
+                                      <td *ngIf="isPatient">
+                                        <button mat-stroked-button color="warn" (click)="cancelAppointment(appointment._id)">Cancel Appointment</button>
                                       </td>
                                   </tr>
                                 

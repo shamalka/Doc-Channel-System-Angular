@@ -30,6 +30,10 @@ var appointmentSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    status:{
+        type: String,
+        required: true
+    },
     create_date:{
         type: Date,
         default: Date.now
@@ -48,4 +52,9 @@ module.exports.getAppointments = function(callback, limit){
 // Add Appointments
 module.exports.addAppointment = function(appointment, callback){
     Appointment.create(appointment, callback);
+}
+
+//Remove appointment
+module.exports.removeAppointment = function(appointmentId, callback){
+    Appointment.findByIdAndRemove(appointmentId, callback);
 }

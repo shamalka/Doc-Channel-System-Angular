@@ -84,7 +84,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('userName', res.userName);
       localStorage.setItem('role', "doctor");
       // console.log(localStorage.getItem('token'));
-      // console.log(localStorage.getItem('userId'));
+      console.log(localStorage.getItem('userId'));
       // console.log(res);
       this.router.navigate(['/dashboard']);
       this.dialogRef.close();

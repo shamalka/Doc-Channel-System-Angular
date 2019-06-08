@@ -128,10 +128,45 @@ export class DataService {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     localStorage.removeItem('userName');
-    this.router.navigate(['/home']);
+    this.router.navigate(['/']);
     this.router.routeReuseStrategy.shouldReuseRoute = function(){
       return false;
   };
+  }
+
+  setAppointmentStatus(appointmentId:string, status:string){
+    const url = this.serverUrl + '/appointments/status/' + appointmentId + "/" + status;
+    return this.http.post(url, {headers: this.getHeaders()});
+  }
+
+  //Assign patient to doctor
+  setDoctorToPatient(patientId:string, doctorId:string){
+    const url = this.serverUrl + '/patients/adddoctor/' + patientId + "/" + doctorId;
+    return this.http.post(url, {headers: this.getHeaders()});
+  }
+
+  //Remove doctor from patient
+  removeDocFromPatient(patientId:string){
+    const url = this.serverUrl + '/patients/remdoctor/' + patientId;
+    return this.http.post(url, {headers: this.getHeaders()});
+  }
+
+  //get appointments for Patients
+  getPatientAppointments(patientId:string){
+    const url = this.serverUrl + '/patients/appointments/' + patientId;
+    return this.http.get(url, {headers: this.getHeaders()});
+  }
+
+  //Remove Appointment
+  removeAppointment(appointmentId:string){
+    const url = this.serverUrl + '/appointments/rem/' + appointmentId;
+    return this.http.delete(url, {headers: this.getHeaders()});
+  }
+
+  //set doctor availabilityW
+  setAvailability(doctorId:string, status:string){
+    const url = this.serverUrl + '/doctors/availability/' + doctorId + '/' + status;
+    return this.http.post(url, {headers: this.getHeaders()});
   }
 
 }

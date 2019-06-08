@@ -21,11 +21,14 @@ import { UpgradeComponent } from './upgrade/upgrade.component';
 import {
   AgmCoreModule
 } from '@agm/core';
+
+
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { MainpageComponent } from './layouts/home-layout/mainpage/mainpage.component';
 import { HomeNavbarComponent } from './layouts/home-layout/home-navbar/home-navbar.component';
 import { LoginComponent } from './layouts/home-layout/auth/login/login.component';
 import { HomeMidComponent } from './layouts/home-layout/home-mid/home-mid.component';
+import { MatProgressSpinnerModule, MatChipsModule } from '@angular/material';
 
 
 
@@ -37,6 +40,8 @@ import { HomeMidComponent } from './layouts/home-layout/home-mid/home-mid.compon
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
+    MatProgressSpinnerModule,
+    MatChipsModule,
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
     })

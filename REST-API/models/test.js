@@ -37,11 +37,16 @@ module.exports.addPost = function(post, callback){
 }
 
 //Add Comment
-module.exports.addComment = function(comment, callback){
-    Post.Comment.create(comment, callback);
+module.exports.addComment = function(postId, comment, callback){
+    Post.findOneAndUpdate({_id : postId}, {$push: {comments : comment}}, callback);
 }
 
 //Get Posts
 module.exports.getPosts = function(post, limit){
     Post.find(post).limit(limit);
+}
+
+//get posts by comment id
+module.exports.getPostbyComment = function(commentId, limit){
+    Post.find({'comments._id': commentId}).limit(limit);
 }

@@ -52,6 +52,7 @@ export class HomeNavbarComponent implements OnInit {
   Logout(){
     if(localStorage.getItem('token')!=null){
       this.data.logoutUser();
+      window.location.reload();
     }
   
   }

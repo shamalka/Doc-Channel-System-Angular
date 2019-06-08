@@ -18,7 +18,8 @@ import {
   MatCardModule,
   MatProgressSpinnerModule,
   MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatChipsModule
 } from '@angular/material';
 
 import { ReportsComponent } from './reports/reports.component';
@@ -42,7 +43,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatProgressSpinnerModule,
     BrowserAnimationsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatChipsModule
   ],
   declarations: [
     FooterComponent,

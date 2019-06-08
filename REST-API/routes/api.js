@@ -57,6 +57,19 @@ router.post('/appointments/add', function(req, res){
     })
 });
 
+//Remove Appointment
+router.delete('/appointments/rem/:appointmentId', function(req, res){
+    let appointmentId = req.params.appointmentId;
+
+    Appointment.findOneAndRemove({_id: appointmentId}, function(err, appointment){
+        if(err){
+            throw err;
+        }
+        res.json(appointment);
+        
+    });
+});
+
 
 
 //Get Doctors
@@ -483,6 +496,52 @@ router.post('/doctors/availability/:doctorId/:status', function(req, res){
     })
 });
 
+//
+//Set appointment Status
+router.post('/appointments/status/:appointmentId/:status', function(req, res){
+    let doctorId = req.params.doctorId;
+    let status = req.params.status;
+    let appointmentId = req.params.appointmentId;
+
+    Appointment.findOneAndUpdate({_id: appointmentId}, {$set: {status : status}}, function(err, appointment){
+        if(err){
+            console.log(err);
+            return;
+        } else{
+            res.json(appointment);
+        }
+    })
+});
+
+//assign doctor to patient
+router.post('/patients/adddoctor/:patientId/:doctorId', function(req, res){
+    let patientId = req.params.patientId;
+    let doctorId = req.params.doctorId;
+
+    Patient.findOneAndUpdate({_id: patientId}, {$set: {doctor : doctorId}}, function(err, patient){
+        if(err){
+            console.log(err);
+            return;
+        } else{
+            res.json(patient);
+        }
+    })
+});
+
+//remove doctor from patient
+router.post('/patients/remdoctor/:patientId', function(req, res){
+    let patientId = req.params.patientId;
+
+    Patient.findOneAndUpdate({_id: patientId}, {$set: {doctor : ''}}, function(err, patient){
+        if(err){
+            console.log(err);
+            return;
+        } else{
+            res.json(patient);
+        }
+    })
+});
+
 
 //----------------------------------------------------------------
 //Patient Dashboard
@@ -530,15 +589,14 @@ router.get('/reports/:patientId', function(req, res){
 //----------------------------------------------------------------
 //Test
 //find post
-router.post('/post', function(req, res){
-    const title = req.body;
+router.get('/posts', function(req, res){
+    const title = req.params.title;
     
-    Test.find({title:title}, function(err, posts){
+    Test.getPosts(function(err, posts){
         if(err){
             throw err;
         }
         res.json(posts);
-        
     })
 });
 
@@ -555,13 +613,35 @@ router.post('/addpost/add', function(req, res){
 });
 
 //Add Comment
-router.post('/addpost/add', function(req, res){
+router.post('/addcomment/:postId', function(req, res){
     var comment = req.body;
-    Test.addPost(post, function(err, post){
+    var postId = req.params.postId;
+
+    // Test.Post.findOneAndUpdate({_id : postId}, {$set: {title : 'tt'}}, function(err, post){
+    //     if(err){
+    //         console.log(err);
+    //         return;
+    //     } else{
+    //         res.json(post);
+    //     }
+    // })
+
+    Test.addComment(postId, comment, function(err, post){
         if(err){
             throw err;
         }
         res.json(post);
+    })
+});
+
+//get posts by comment id
+router.get('/posts/comments/:commentId', function(req, res){
+    let commentId = req.params.commentId;
+    Test.find({'comments._id': commentId}, function(err, posts){
+        if(err){
+            throw err;
+        }
+        res.json(posts);
         
     })
 });

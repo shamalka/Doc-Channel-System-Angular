@@ -1,4 +1,4 @@
-<div class="main-content">
+<div class="main-content" *ngFor="let data of dataModel">
   <div class="container-fluid" *ngIf="dataModel">
       <div class="row">
           <div class="col-md-8">
@@ -7,7 +7,7 @@
                       <h4 class="card-title">Edit Profile</h4>
                       <p class="card-category"></p>
                   </div>
-                  <div class="card-body" *ngFor="let data of dataModel">
+                  <div class="card-body">
                       <form>
                           <div class="row">
                              <!-- placeholder="Company (disabled)" -->
@@ -68,15 +68,20 @@
               </div>
           </div>
           <div class="col-md-4">
-              <div class="card card-profile">
+              <div class="card card-profile" *ngIf="!isPatient">
                 
                   <div class="card-body">
             
                       <h4 class="card-title">Set Availability</h4>
-                      <p class="card-description">
-                          Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                      </p>
-                      <a href="#pablo" class="btn btn-danger btn-round">Follow</a>
+                      
+                      <div class="toggle">
+                          <p>Available</p>
+                        <mat-slide-toggle [checked] = "checked" (change)="changed($event)"></mat-slide-toggle>
+                      </div>
+                      <div class="set">.
+                          <a class="btn btn-danger btn-round" (click)="setAvailability(data._id)">Set</a>
+                      </div>
+                      
                   </div>
               </div>
           </div>

@@ -1,20 +1,20 @@
-<div class="topnav">
+<div class="topnav" id="myTopnav">
   <div class="logo">
     <a>Medicare</a>
   </div>
-  <div class="links">
+  
       <a class="active" href="#home">Home</a>
       <a href="#news">Doctors</a>
       <a href="#contact">Contact</a>
       <a href="#about">About</a>
+  <div class="links">
       <a *ngIf="!loginFlag" (click)="openLoginForm('patient')">Login as a Patient</a>
       <a *ngIf="!loginFlag" (click)="openLoginForm('doctor')">Login as a Doctor</a>
       <a *ngIf="loginFlag" routerLink="/dashboard">Dashboard</a>
       <a (click)="openRegisterForm()">Register</a>
       <a class="logout" (click)="Logout()">Logout</a>
-
   </div>
 
-
-  
 </div>
+
+

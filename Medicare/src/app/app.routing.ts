@@ -9,7 +9,7 @@ import { MainpageComponent } from './layouts/home-layout/mainpage/mainpage.compo
 
 
 const routes: Routes =[
-  {path:'home',component:MainpageComponent,pathMatch:'full'},
+  {path:'',component:MainpageComponent,pathMatch:'full'},
   {
     path: 'dashboard',
     redirectTo: 'dashboard',

@@ -41,7 +41,7 @@
           </div>
           <div class="modal-body">
             <form #appointmentForm="ngForm" (ngSubmit)="onSubmit()">
-             
+             {{ appointmentModel | json }}
               <div class="form-group">
                 <label for="appointment_name" class="text-black">Full Name</label>
                 <input required [(ngModel)]="appointmentModel.fullName" #appointment_name="ngModel" name="appointment_name" type="text" class="form-control" id="appointment_name">
@@ -74,6 +74,7 @@
                       <option>Select Your Doctor</option>
                       <option *ngFor="let doctor of doctors">{{ doctor.doctorName }}</option>
                   </select>
+
               </div>
   
               <div class="form-group">
@@ -96,8 +97,6 @@
 <div class="text-center">
   <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalAppointment" (onClick)="goToAppointment()">Make Appointment</a>
 </div>
-
-
 
 </div>
 
