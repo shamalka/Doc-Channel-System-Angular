@@ -213,4 +213,9 @@ export class DataService {
     return this.http.post(url, object, {headers: this.getHeaders()});
   }
 
+  deleteDrug(drugId:string){
+    const url = this.serverUrl + '/drugs/remove/' + drugId;
+    return this.http.delete(url, {headers: this.getHeaders()});
+  }
+
 }

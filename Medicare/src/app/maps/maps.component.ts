@@ -38,4 +38,11 @@ export class MapsComponent implements OnInit {
       })
   }
 
+  deleteDrug(drugId:string){
+      this.data.deleteDrug(drugId).subscribe((res:any) => {
+          console.log(drugId + " is deleted");
+          window.location.reload();
+      })
+  }
+
 }
