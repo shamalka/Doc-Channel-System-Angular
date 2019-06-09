@@ -34,6 +34,10 @@ var reportSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    time:{
+        type: String,
+        required: true
+    },
     create_date:{
         type: Date,
         default: Date.now

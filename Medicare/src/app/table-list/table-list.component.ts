@@ -45,6 +45,7 @@ export class TableListComponent implements OnInit {
   getAppointmentsForDoc(){
     this.data.getDocAppointments(this.docName).subscribe((data:any) => {
       this.appointmentModel = data;
+      console.log("count: " + data.length);
     })
   }
 

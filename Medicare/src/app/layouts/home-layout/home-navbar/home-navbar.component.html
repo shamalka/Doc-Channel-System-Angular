@@ -11,7 +11,7 @@
       <a *ngIf="!loginFlag" (click)="openLoginForm('patient')">Login as a Patient</a>
       <a *ngIf="!loginFlag" (click)="openLoginForm('doctor')">Login as a Doctor</a>
       <a *ngIf="loginFlag" routerLink="/dashboard">Dashboard</a>
-      <a (click)="openRegisterForm()">Register</a>
+      <a *ngIf="!loginFlag" (click)="openRegisterForm()">Register</a>
       <a class="logout" (click)="Logout()">Logout</a>
   </div>
 

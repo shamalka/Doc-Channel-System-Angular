@@ -7,6 +7,7 @@ export class Report {
         public gender:string, 
         public description:string,
         public prescription:string,
-        public nextDate:string){
+        public nextDate:string,
+        public time:string){
     }
 }

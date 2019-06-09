@@ -10,6 +10,9 @@
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="reportModel.time" #report_time="ngModel" name="report_time" placeholder="Time">
+    </mat-form-field>
   
 
 

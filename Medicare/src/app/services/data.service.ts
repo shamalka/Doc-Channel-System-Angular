@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Patient } from 'app/models/patient';
 import { Doctor } from 'app/models/doctor';
 import { Report } from 'app/models/report';
+import { Drug } from 'app/models/drug';
 
 @Injectable({
   providedIn: 'root'
@@ -24,9 +25,17 @@ export class DataService {
     return headers;
   }
 
-  //get All Appointments
-  getAppointments(){
-    return this.http.get(this.serverUrl + '/appointments/all');
+  //------------------------------------------------------------------
+  //Doctor
+
+  getDoctors(){
+    return this.http.get( this.serverUrl + '/doctors/available');
+  }
+
+  //get Doctor details
+  getDocDetails(DoctorId:string): Observable<Doctor[]>{
+    const url = this.serverUrl + '/doctors/' + DoctorId;
+    return this.http.get<Doctor[]>(url);
   }
 
   //get Appointments of doctor
@@ -41,11 +50,27 @@ export class DataService {
     return this.http.get<Patient[]>(url);
   }
 
-  //get Doctor details
-  getDocDetails(DoctorId:string): Observable<Doctor[]>{
-    const url = this.serverUrl + '/doctors/' + DoctorId;
-    return this.http.get<Doctor[]>(url);
+  //set doctor availabilityW
+  setAvailability(doctorId:string, status:string){
+    const url = this.serverUrl + '/doctors/availability/' + doctorId + '/' + status;
+    return this.http.post(url, {headers: this.getHeaders()});
   }
+
+  //Update Doctor
+  updateDoctor(doctorId:string, object:Object){
+    const url = this.serverUrl + '/doctors/update/' + doctorId;
+    return this.http.post(url, object, {headers: this.getHeaders()});
+  }
+
+  getPatientDocReports(PatientId:string, DoctorId:string): Observable<Report[]>{
+    const url = this.serverUrl + '/reports/' + PatientId + '/' + DoctorId;
+    return this.http.get<Report[]>(url);
+  }
+
+
+
+  //.......................................................................................
+  //Patient
 
   //get patient details
   getPatientDetails(PatientId:string): Observable<Patient[]>{
@@ -53,14 +78,10 @@ export class DataService {
     return this.http.get<Patient[]>(url);
   }
 
-  AddReport(object:Object){
-    const url = this.serverUrl + '/reports/add';
+  //Update Patient
+  updatePatient(patientId:string, object:Object){
+    const url = this.serverUrl + '/patients/update/' + patientId;
     return this.http.post(url, object, {headers: this.getHeaders()});
-  }
-  
-  getPatientDocReports(PatientId:string, DoctorId:string): Observable<Report[]>{
-    const url = this.serverUrl + '/reports/' + PatientId + '/' + DoctorId;
-    return this.http.get<Report[]>(url);
   }
 
   getPatientReports(PatientId:string): Observable<Report[]>{
@@ -68,14 +89,39 @@ export class DataService {
     return this.http.get<Report[]>(url);
   }
 
-  isPatient(){
-    if(localStorage.getItem('role')=='patient'){
-      return true;
-    }else{
-      return false;
-    }
+
+  AddReport(object:Object){
+    const url = this.serverUrl + '/reports/add';
+    return this.http.post(url, object, {headers: this.getHeaders()});
   }
 
+  //get All Appointments
+  getAppointments(){
+    return this.http.get(this.serverUrl + '/appointments/all');
+  }
+
+  //Assign doctor to patient
+  setDoctorToPatient(patientId:string, doctorId:string){
+    const url = this.serverUrl + '/patients/adddoctor/' + patientId + "/" + doctorId;
+    return this.http.post(url, {headers: this.getHeaders()});
+  }
+
+  //Remove doctor from patient
+  removeDocFromPatient(patientId:string){
+    const url = this.serverUrl + '/patients/remdoctor/' + patientId;
+    return this.http.post(url, {headers: this.getHeaders()});
+  }
+
+  //get appointments for Patients
+  getPatientAppointments(patientId:string){
+    const url = this.serverUrl + '/patients/appointments/' + patientId;
+    return this.http.get(url, {headers: this.getHeaders()});
+  }
+
+  
+  //----------------------------------------------------------------------
+  //Appointment
+  
   addAppointment(object:Object){
     const url = this.serverUrl + '/appointments/add';
 
@@ -88,10 +134,21 @@ export class DataService {
     return this.http.post(url, object, {headers: this.getHeaders()});
   }
 
-  getDoctors(){
-    return this.http.get( this.serverUrl + '/doctors/available');
+  setAppointmentStatus(appointmentId:string, status:string){
+    const url = this.serverUrl + '/appointments/status/' + appointmentId + "/" + status;
+    return this.http.post(url, {headers: this.getHeaders()});
   }
 
+  //Remove Appointment
+  removeAppointment(appointmentId:string){
+    const url = this.serverUrl + '/appointments/rem/' + appointmentId;
+    return this.http.delete(url, {headers: this.getHeaders()});
+  }
+  
+
+  //------------------------------------------------------------------------------------
+  //Auth
+  
   loginPatient(userObject:Object){
     const url = this.serverUrl + '/users/login/patient';
     const obj = {
@@ -114,6 +171,14 @@ export class DataService {
     const url = this.serverUrl + '/users/register/patient';
     return this.http.post(url, object, {headers: this.getHeaders()});
   }
+  
+  isPatient(){
+    if(localStorage.getItem('role')=='patient'){
+      return true;
+    }else{
+      return false;
+    }
+  }
 
   isLoggedin(){
     console.log(localStorage.getItem('token'))
@@ -134,50 +199,17 @@ export class DataService {
   };
   }
 
-  setAppointmentStatus(appointmentId:string, status:string){
-    const url = this.serverUrl + '/appointments/status/' + appointmentId + "/" + status;
-    return this.http.post(url, {headers: this.getHeaders()});
+  //-----------------------------------------------------------------------
+  //Drugs
+
+  getDrugs(): Observable<Drug[]>{
+    const url = this.serverUrl + '/drugs/all';
+    return this.http.get<Drug[]>(url);
   }
 
-  //Assign patient to doctor
-  setDoctorToPatient(patientId:string, doctorId:string){
-    const url = this.serverUrl + '/patients/adddoctor/' + patientId + "/" + doctorId;
-    return this.http.post(url, {headers: this.getHeaders()});
-  }
+  AddDrug(object:Object){
+    const url = this.serverUrl + '/drugs/add';
 
-  //Remove doctor from patient
-  removeDocFromPatient(patientId:string){
-    const url = this.serverUrl + '/patients/remdoctor/' + patientId;
-    return this.http.post(url, {headers: this.getHeaders()});
-  }
-
-  //get appointments for Patients
-  getPatientAppointments(patientId:string){
-    const url = this.serverUrl + '/patients/appointments/' + patientId;
-    return this.http.get(url, {headers: this.getHeaders()});
-  }
-
-  //Remove Appointment
-  removeAppointment(appointmentId:string){
-    const url = this.serverUrl + '/appointments/rem/' + appointmentId;
-    return this.http.delete(url, {headers: this.getHeaders()});
-  }
-
-  //set doctor availabilityW
-  setAvailability(doctorId:string, status:string){
-    const url = this.serverUrl + '/doctors/availability/' + doctorId + '/' + status;
-    return this.http.post(url, {headers: this.getHeaders()});
-  }
-
-  //Update Doctor
-  updateDoctor(doctorId:string, object:Object){
-    const url = this.serverUrl + '/doctors/update/' + doctorId;
-    return this.http.post(url, object, {headers: this.getHeaders()});
-  }
-
-  //Update Patient
-  updatePatient(patientId:string, object:Object){
-    const url = this.serverUrl + '/patients/update/' + patientId;
     return this.http.post(url, object, {headers: this.getHeaders()});
   }
 

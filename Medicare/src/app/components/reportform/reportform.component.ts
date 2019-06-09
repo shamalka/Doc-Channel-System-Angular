@@ -24,7 +24,7 @@ export class ReportformComponent implements OnInit {
     this.dialogRef.close("Closed...!");
   }
 
-  reportModel = new Report('doc_id',this.data.id,this.data.name,this.data.dob,this.data.gender,'','','');
+  reportModel = new Report('doc_id',this.data.id,this.data.name,this.data.dob,this.data.gender,'','','','');
   reportObject:object;
 
   AddReport(){
@@ -36,7 +36,8 @@ export class ReportformComponent implements OnInit {
       "gender": this.reportModel.gender,
       "description": this.reportModel.description,
       "prescription": this.reportModel.prescription,
-      "nextDate": this.reportModel.nextDate
+      "nextDate": this.reportModel.nextDate,
+      "time": this.reportModel.time
     }
 
     this.servicedata.AddReport(this.reportObject).subscribe(servicedata => {

@@ -17,18 +17,21 @@ export class LoginComponent implements OnInit {
   userModel = new User('','','','','','','');
   userObject:object;
 
-
-
   isLogged:boolean;
-
   errorFlag:boolean=false;
+  isPatient:boolean;
+
   errorText:string;
 
   constructor(public dialog: MatDialog, public dialogRef: MatDialogRef<LoginComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private router:Router,private servicedata:DataService, private http:HttpClient) { }
 
   ngOnInit() {
-    
+    if(this.data.type=='patient'){
+      this.isPatient = true;
+    }else{
+      this.isPatient = false;
+    }
   }
 
   onSubmit(){

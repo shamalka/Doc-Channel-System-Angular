@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDatepickerInputEvent } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDatepickerInputEvent, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { DataService } from 'app/services/data.service';
@@ -21,8 +21,12 @@ export class AppointmentFormComponent implements OnInit {
 
   date:Date;
 
+  docPatientCount:any;
+  docPatientLimit:any;
+  doctor_name:string;
+
   constructor(public dialogRef: MatDialogRef<AppointmentFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public formData: any, private router:Router,private data:DataService, private http:HttpClient) { }
+    @Inject(MAT_DIALOG_DATA) public formData: any, private router:Router,private data:DataService, private http:HttpClient, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     //Set Username
@@ -41,23 +45,37 @@ export class AppointmentFormComponent implements OnInit {
       "userId": this.userId,
       "fullName": this.userName,
       "email": this.appointmentModel.email,
-      "date": this.appointmentModel.date.toString().substring(0,15),
+      "date": this.appointmentModel.date,
       "time": this.appointmentModel.time,
-      "doctor": this.appointmentModel.doctor,
+      "doctor": this.doctor_name,
       "message": this.appointmentModel.message,
-      "status": this.appointmentModel.status
+      "status": 'pending'
     }
     // console.log(this.appointmentObject);
     // console.log(this.appointmentModel.fullName);
-    this.data.addAppointment(this.appointmentObject).subscribe((data:any) => {
+    //console.log(this.appointmentModel.doctor);
+    //this.getAppointmentsForDoc(this.appointmentModel.doctor);
+
+    console.log(this.docPatientCount + " : " + this.docPatientLimit)
+
+    if(parseInt(this.docPatientCount)>=parseInt(this.docPatientLimit)){
+      console.log("Limit exceeded..");
+      this.openSnackBar("Sorry, Doctor's Patient limit is full", "Close");
+    }else{
+      console.log("not exceeded..");
+      console.log(this.appointmentObject);
+      this.data.addAppointment(this.appointmentObject).subscribe((data:any) => {
         console.log(window.localStorage.getItem('appointment'));
         console.log(this.appointmentObject);
         
         this.dialogRef.close();
         this.router.navigate(['/dashboard']);
-    },(err:HttpErrorResponse)=>{
-      console.log(err.error);
-    });
+      },(err:HttpErrorResponse)=>{
+        console.log(err.error);
+      });
+    }
+
+    
 
     
   }
@@ -90,6 +108,26 @@ export class AppointmentFormComponent implements OnInit {
   }
 
 
-  
+  getAppointmentsForDoc(docName:string){
+    this.data.getDocAppointments(docName).subscribe((data:any) => {
+      this.appointmentModel = data;
+      
+      this.docPatientCount = data.length;
+      console.log("count: " + this.docPatientCount);
+    })
+  }
+
+  getPatientCount(docName:string,patientCount:any){
+    console.log(patientCount);
+    this.docPatientLimit = patientCount;
+    this.doctor_name = docName;
+    this.getAppointmentsForDoc(docName);
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
 
 }

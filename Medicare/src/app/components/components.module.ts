@@ -19,7 +19,8 @@ import {
   MatProgressSpinnerModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatChipsModule
+  MatChipsModule,
+  MatSnackBarModule
 } from '@angular/material';
 
 import { ReportsComponent } from './reports/reports.component';
@@ -45,7 +46,8 @@ import { AppointmentFormComponent } from './appointment-form/appointment-form.co
     BrowserAnimationsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSnackBarModule
   ],
   declarations: [
     FooterComponent,

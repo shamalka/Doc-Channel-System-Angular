@@ -6,7 +6,21 @@
             </div>
             <div class="card-body">
                 <h4 class="card-title">{{ report.description }}</h4>
-                <p class="card-category">{{ report.prescription }}</p>
+                <div class="row">
+                    <div class="col-md-4">
+                        <p class="card-category">{{ report.prescription }}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>Next Clinic Date</p>
+                        <p class="card-category">{{ report.nextDate }}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>Next Clinic Time</p>
+                        <p class="card-category">{{ report.time }}</p>
+                    </div>
+                </div>
+                
+                
             </div>
             <div class="card-footer">
                 <button mat-raised-button type="submit" class="btn btn-success pull-right">Print Prescription</button>

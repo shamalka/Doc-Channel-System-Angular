@@ -39,6 +39,10 @@
                                   <input *ngIf="!isPatient"  matInput name="departureTime" [(ngModel)]="doctorModel.departureTime" placeholder="Departure Time" type="text" value="">
                                 </mat-form-field>
                                 
+                                <mat-form-field *ngIf="!isPatient"  class="example-full-width">
+                                  <input matInput name="patientCount" [(ngModel)]="doctorModel.patientCount" placeholder="Limit Patient Count" type="text" value="">
+                              </mat-form-field>
+                                
                               </div>
                               <div *ngIf="isPatient" class="col-md-4">
                                   <mat-form-field class="example-full-width">

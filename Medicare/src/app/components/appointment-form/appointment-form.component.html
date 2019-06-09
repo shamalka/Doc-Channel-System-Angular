@@ -45,7 +45,7 @@
     </div>
   </form> -->
 
-    {{ appointmentModel | json }}
+
     <mat-form-field>
         <input matInput required [(ngModel)]="appointmentModel.fullName" #appointment_name="ngModel" name="appointment_name" placeholder="Full Name">
         <div class="alert alert-danger" *ngIf="appointment_name.touched && !appointment_name.valid">Full name is required.</div>
@@ -67,7 +67,7 @@
     <mat-form-field *ngIf="doctors">
         <mat-label>Select Doctor</mat-label>
         <mat-select [(ngModel)]="appointmentModel.doctor" #doctor="ngModel" name="doctor">
-          <mat-option *ngFor="let doctor of doctors" [value]="doctor.doctorName">
+          <mat-option *ngFor="let doctor of doctors" [value]="doctor.doctorName" (onSelectionChange)="getPatientCount(doctor.doctorName, doctor.patientCount)">
             {{ doctor.doctorName }}
           </mat-option>
         </mat-select>

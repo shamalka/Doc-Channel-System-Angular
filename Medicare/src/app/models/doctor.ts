@@ -7,6 +7,7 @@ export class Doctor {
         public arrivalTime:string, 
         public departureTime:string, 
         public availability:string,
+        public patientCount:string,
         public type:string){
     }
 }

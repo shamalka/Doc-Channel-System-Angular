@@ -27,6 +27,10 @@ var doctorSchema = mongoose.Schema({
         type: Boolean,
         required: true
     },
+    patientCount:{
+        type: String,
+        required: true
+    },
     type:{
         type: String,
         required: true

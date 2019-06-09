@@ -11,6 +11,7 @@ let Doctor = require('../models/doctor');
 let Patient = require('../models/patient');
 let Report = require('../models/report');
 let User = require('../models/users');
+let Drug = require('../models/drug');
 let Test = require('../models/test');
 
 //Get all appointments
@@ -264,6 +265,7 @@ router.post('/users/register/:userFlag', function(req, res){
         const arrivalTime = req.body.arrivalTime;
         const departureTime = req.body.departureTime;
         const availability = req.body.availability;
+        const patientCount = req.body.patientCount;
         const type = req.body.type;
         //const type = req.body.type;
 
@@ -275,6 +277,7 @@ router.post('/users/register/:userFlag', function(req, res){
             newDoctor.arrivalTime = arrivalTime;
             newDoctor.departureTime = departureTime;
             newDoctor.availability = availability;
+            patientCount = patientCount;
             newDoctor.type = type;
             
 
@@ -472,6 +475,7 @@ router.post('/reports/add', function(req, res){
     const description = req.body.description;
     const prescription = req.body.prescription;
     const nextDate = req.body.nextDate;
+    const time = req.body.time;
 
     //set data to Report object
     let newReport = new Report();
@@ -483,6 +487,7 @@ router.post('/reports/add', function(req, res){
         newReport.description = description;
         newReport.prescription = prescription;
         newReport.nextDate = nextDate;
+        newReport.time = time;
 
         //Add report object to collection
         newReport.save(function(err){
@@ -630,6 +635,74 @@ router.get('/reports/:patientId', function(req, res){
         res.json(reports);
         
     })
+});
+
+//----------------------------------------------------------------
+//Drugs
+
+//Add Drug
+router.post('/drugs/add', function(req, res){
+    //get data from header
+    const drugName = req.body.drugName;
+    const price = req.body.price;
+    const quantity = req.body.quantity;
+
+    //set data to Report object
+    let newDrug = new Drug();
+        newDrug.drugName = drugName;
+        newDrug.price = price;
+        newDrug.quantity = quantity;
+
+        //Add report object to collection
+        newDrug.save(function(err){
+            if(err){
+                console.log(err);
+                return;
+            } else{
+                res.json(newDrug);
+            }
+        });
+})
+
+//get all drugs
+router.get('/drugs/all', function(req, res){
+    Drug.find(function(err, drugs){
+        if(err){
+            throw err;
+        }
+        res.json(drugs); 
+    })
+});
+
+//Update Drug
+router.post('/drugs/update/:drugId', function(req,res){
+    let drugId = req.params.drugId;
+
+    let drugName = req.body.drugName;
+    let price = req.body.price;
+    let quantity = req.body.quantity;
+
+    Drug.findOneAndUpdate({_id: drugId}, {$set: {drugName: drugName, price: price, quantity: quantity}}, function(err, drug){
+        if(err){
+            console.log(err);
+            return;
+        } else{
+            res.json(drug);
+        }
+    })
+});
+
+//Remove drug
+router.delete('/drugs/remove/:drugId', function(req, res){
+    let drugId = req.params.drugId;
+
+    Drug.findOneAndRemove({_id: drugId}, function(err, drug){
+        if(err){
+            throw err;
+        }
+        res.json(drug);
+        
+    });
 });
 
 //----------------------------------------------------------------

@@ -21,7 +21,8 @@ export class UserProfileComponent implements OnInit {
     doctorName: '',
     email: '',
     arrivalTime: '',
-    departureTime: ''
+    departureTime: '',
+    patientCount: ''
   }
 
   patientModel:object = {
@@ -58,7 +59,8 @@ export class UserProfileComponent implements OnInit {
         doctorName: res[0].doctorName,
         email: res[0].email,
         arrivalTime: res[0].arrivalTime,
-        departureTime: res[0].departureTime
+        departureTime: res[0].departureTime,
+        patientCount: res[0].patientCount
       }
 
       if(res[0].availability == true){
