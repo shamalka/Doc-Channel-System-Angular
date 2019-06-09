@@ -26,6 +26,7 @@ import { ReportsComponent } from './reports/reports.component';
 import { LoginComponent } from 'app/layouts/home-layout/auth/login/login.component';
 import { RegisterComponent } from 'app/layouts/home-layout/auth/register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppointmentFormComponent } from './appointment-form/appointment-form.component';
 
 @NgModule({
   imports: [
@@ -53,13 +54,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReportformComponent,
     ReportsComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AppointmentFormComponent
   ],
   exports: [
     FooterComponent,
     NavbarComponent,
     SidebarComponent
   ],
-  entryComponents: [ReportformComponent, ReportsComponent, LoginComponent, RegisterComponent]
+  entryComponents: [ReportformComponent, ReportsComponent, LoginComponent, RegisterComponent, AppointmentFormComponent]
 })
 export class ComponentsModule { }

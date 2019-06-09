@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 
+
 //Doctor Schema
 var doctorSchema = mongoose.Schema({
     doctorName:{

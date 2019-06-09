@@ -1,0 +1,38 @@
+<app-home-navbar></app-home-navbar>
+<router-outlet></router-outlet>
+<div class="container" *ngIf="doctors">
+    <div class="row" >
+        <div class="col-sm-4" *ngFor="let doctor of doctors">
+          <div class="card" style="width: 21rem;">
+            <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTstjSUbcZXVE556ZG-xhsNEjnrzZIeHgXpstW68sjTSycFiMeCng" alt="Card image cap">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm">
+                        <h5 class="card-title">{{ doctor.doctorName }}</h5>
+                    </div>
+                    <div class="col-sm">
+                        <p class="card-text">{{ doctor.type }}</p>
+                    </div>
+                </div>
+                <hr class="my-2">
+                <div class="row">
+                    <div class="col-sm">
+                        <p class="card-text">Arrival: {{ doctor.arrivalTime }}</p>
+                    </div>
+                    <div class="col-sm">
+                        <p class="card-text">Departure: {{ doctor.departureTime }}</p>
+                    </div>
+                </div>
+                <hr class="my-2">
+              <a href="#" class="btn btn-primary" style="width: 100%;">Make Appointment</a>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-1"></div>
+    </div>
+  </div>

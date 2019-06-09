@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from 'app/services/data.service';
 import { Observable } from 'rxjs';
-import { MatSlideToggleChange } from '@angular/material';
+import { MatSlideToggleChange, MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-user-profile',
@@ -17,8 +17,22 @@ export class UserProfileComponent implements OnInit {
   checked:boolean;
   availability:string;
   
+  doctorModel:object = {
+    doctorName: '',
+    email: '',
+    arrivalTime: '',
+    departureTime: ''
+  }
 
-  constructor(private http: HttpClient, private data: DataService) { }
+  patientModel:object = {
+    fullName: '',
+    email: '',
+    dob: '',
+    gender: '',
+    telephone: ''
+  }
+
+  constructor(private http: HttpClient, private data: DataService, private snackBar:MatSnackBar) { }
 
   ngOnInit() {
     console.log(localStorage.getItem('userName'));
@@ -39,6 +53,14 @@ export class UserProfileComponent implements OnInit {
     this.data.getDocDetails(this.userId).subscribe((res:any) => {
       this.dataModel = res;
       console.log(res[0].availability);
+
+      this.doctorModel = {
+        doctorName: res[0].doctorName,
+        email: res[0].email,
+        arrivalTime: res[0].arrivalTime,
+        departureTime: res[0].departureTime
+      }
+
       if(res[0].availability == true){
         this.checked = true;
       }else{
@@ -48,9 +70,16 @@ export class UserProfileComponent implements OnInit {
   }
 
   getPatient(){
-    this.data.getPatientDetails(this.userId).subscribe(data => {
-      this.dataModel = data;
+    this.data.getPatientDetails(this.userId).subscribe((res:any) => {
+      this.dataModel = res;
       //console.log(data);
+      this.patientModel = {
+        fullName: res[0].fullName,
+        email: res[0].email,
+        dob: res[0].dob,
+        gender: res[0].gender,
+        telephone: res[0].telephone
+      }
     })
   }
 
@@ -66,7 +95,39 @@ export class UserProfileComponent implements OnInit {
   setAvailability(docId:string){
     console.log(docId);
     this.data.setAvailability(docId, this.availability).subscribe((res:any) => {
+      window.location.reload();
     })
+  }
+
+  updateProfile(){
+    console.log(this.doctorModel);
+    if(this.isPatient){
+      this.updatePatient();
+    }else{
+      this.updateDoctor();
+    }
+  }
+
+  updateDoctor(){
+    this.data.updateDoctor(this.userId, this.doctorModel).subscribe((res:any) => {
+      //console.log(res);
+      this.openSnackBar("Update Success", "Close");
+      window.location.reload();
+    })
+  }
+
+  updatePatient(){
+    this.data.updatePatient(this.userId, this.patientModel).subscribe((res:any) => {
+      //console.log(res);
+      this.openSnackBar("Update Success", "Close");
+      window.location.reload();
+    })
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
 }

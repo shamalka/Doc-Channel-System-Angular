@@ -89,7 +89,7 @@ export class DataService {
   }
 
   getDoctors(){
-    return this.http.get( this.serverUrl + '/doctors');
+    return this.http.get( this.serverUrl + '/doctors/available');
   }
 
   loginPatient(userObject:Object){
@@ -167,6 +167,18 @@ export class DataService {
   setAvailability(doctorId:string, status:string){
     const url = this.serverUrl + '/doctors/availability/' + doctorId + '/' + status;
     return this.http.post(url, {headers: this.getHeaders()});
+  }
+
+  //Update Doctor
+  updateDoctor(doctorId:string, object:Object){
+    const url = this.serverUrl + '/doctors/update/' + doctorId;
+    return this.http.post(url, object, {headers: this.getHeaders()});
+  }
+
+  //Update Patient
+  updatePatient(patientId:string, object:Object){
+    const url = this.serverUrl + '/patients/update/' + patientId;
+    return this.http.post(url, object, {headers: this.getHeaders()});
   }
 
 }

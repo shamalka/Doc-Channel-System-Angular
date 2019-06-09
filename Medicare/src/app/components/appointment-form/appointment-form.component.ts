@@ -1,17 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { Appointment } from 'app/models/appointment';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDatepickerInputEvent } from '@angular/material';
+import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { DataService } from 'app/services/data.service';
-import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material';
-import { AppointmentFormComponent } from 'app/components/appointment-form/appointment-form.component';
+import { Appointment } from 'app/models/appointment';
 
 @Component({
-  selector: 'app-mainpage',
-  templateUrl: './mainpage.component.html',
-  styleUrls: ['./mainpage.component.scss']
+  selector: 'app-appointment-form',
+  templateUrl: './appointment-form.component.html',
+  styleUrls: ['./appointment-form.component.scss']
 })
-export class MainpageComponent implements OnInit {
+export class AppointmentFormComponent implements OnInit {
 
   userId:string = localStorage.getItem('userId');
   appointmentModel = new Appointment('', '', '', '', '','','','pending','');
@@ -20,10 +19,12 @@ export class MainpageComponent implements OnInit {
   userName: string;
   doctors:Object;
 
-  constructor(private data: DataService, private http: HttpClient, private router: Router, public dialog: MatDialog) { }
+  date:Date;
+
+  constructor(public dialogRef: MatDialogRef<AppointmentFormComponent>,
+    @Inject(MAT_DIALOG_DATA) public formData: any, private router:Router,private data:DataService, private http:HttpClient) { }
 
   ngOnInit() {
-
     //Set Username
     if(localStorage.getItem('token')!=null){
       this.userName = localStorage.getItem('userName');
@@ -34,11 +35,13 @@ export class MainpageComponent implements OnInit {
   }
 
   onSubmit(){
+  
+  //  var appDate = this.appointmentModel.date.split('T', 2)[0];
     this.appointmentObject = {
       "userId": this.userId,
       "fullName": this.userName,
       "email": this.appointmentModel.email,
-      "date": this.appointmentModel.date,
+      "date": this.appointmentModel.date.toString().substring(0,15),
       "time": this.appointmentModel.time,
       "doctor": this.appointmentModel.doctor,
       "message": this.appointmentModel.message,
@@ -49,6 +52,8 @@ export class MainpageComponent implements OnInit {
     this.data.addAppointment(this.appointmentObject).subscribe((data:any) => {
         console.log(window.localStorage.getItem('appointment'));
         console.log(this.appointmentObject);
+        
+        this.dialogRef.close();
         this.router.navigate(['/dashboard']);
     },(err:HttpErrorResponse)=>{
       console.log(err.error);
@@ -84,16 +89,7 @@ export class MainpageComponent implements OnInit {
     });
   }
 
-  openAppointmentDialog(): void {
-    const dialogRef = this.dialog.open(AppointmentFormComponent, {
-      width: '500px',
-      height: '600px',
-     
-    });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-    });
-  }
+  
 
 }

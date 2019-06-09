@@ -82,6 +82,17 @@ router.get('/doctors', function(req, res){
     })
 });
 
+//get available doctors
+router.get('/doctors/available', function(req, res){
+    Doctor.find({availability: true}, function(err, doctors){
+        if(err){
+            throw err;
+        }
+        res.json(doctors);
+        
+    })
+})
+
 //Get Patients
 router.get('/patients', function(req, res){
     Patient.getPatients(function(err, patients){
@@ -433,6 +444,22 @@ router.get('/doctors/appointments/:doctorId', function(req, res){
 });
 
 //Update doctor
+router.post('/doctors/update/:doctorId', function(req, res){
+    let doctorId = req.params.doctorId;
+    let doctorName = req.body.doctorName;
+    let email = req.body.email;
+    let arrivalTime = req.body.arrivalTime;
+    let departureTime = req.body.departureTime;
+
+    Doctor.findOneAndUpdate({_id: doctorId}, {$set: {doctorName : doctorName, email: email, arrivalTime: arrivalTime, departureTime: departureTime}}, function(err, doctor){
+        if(err){
+            console.log(err);
+            return;
+        } else{
+            res.json(doctor);
+        }
+    })
+});
 
 //Add report
 router.post('/reports/add', function(req, res){
@@ -556,6 +583,25 @@ router.get('/patients/:patientId', function(req, res){
         }
         res.json(patient);
         
+    })
+});
+
+//Update patient
+router.post('/patients/update/:patientId', function(req, res){
+    let patientId = req.params.patientId;
+    let fullName = req.body.fullName;
+    let email = req.body.email;
+    let dob = req.body.dob;
+    let gender = req.body.gender;
+    let telephone = req.body.telephone;
+
+    Patient.findOneAndUpdate({_id: patientId}, {$set: {fullName : fullName, email: email, dob: dob, gender: gender, telephone: telephone}}, function(err, patient){
+        if(err){
+            console.log(err);
+            return;
+        } else{
+            res.json(patient);
+        }
     })
 });
 

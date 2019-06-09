@@ -29,6 +29,7 @@ import { HomeNavbarComponent } from './layouts/home-layout/home-navbar/home-navb
 import { LoginComponent } from './layouts/home-layout/auth/login/login.component';
 import { HomeMidComponent } from './layouts/home-layout/home-mid/home-mid.component';
 import { MatProgressSpinnerModule, MatChipsModule } from '@angular/material';
+import { DoctorsComponent } from './layouts/home-layout/pages/doctors/doctors.component';
 
 
 
@@ -52,6 +53,7 @@ import { MatProgressSpinnerModule, MatChipsModule } from '@angular/material';
     MainpageComponent,
     HomeNavbarComponent,
     HomeMidComponent,
+    DoctorsComponent,
 
 
   ],

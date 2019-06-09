@@ -58,7 +58,7 @@ export class TypographyComponent implements OnInit {
   openAddReportDialog(id:string, name:string, dob:string, gender:string): void {
     const dialogRef = this.dialog.open(ReportformComponent, {
       width: '500px',
-      height: '500px',
+      height: '380px',
       data: {id: id, name: name, dob: dob, gender: gender}
     });
 

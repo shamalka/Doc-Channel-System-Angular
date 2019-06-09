@@ -56,7 +56,7 @@ export class TableListComponent implements OnInit {
     });
     if(status=='accepted'){
       this.setDoctorToPatient(patientId, this.userId);
-    }else if(status == 'rejected' || status == 'finished'){
+    }else if(status == 'rejected'){
       this.removeDocFromPatient(patientId);
     }
   }

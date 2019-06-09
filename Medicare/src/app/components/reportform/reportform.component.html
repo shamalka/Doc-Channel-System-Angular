@@ -1,10 +1,9 @@
-<ol>
-  <li>
+
     <mat-form-field>
-      <input matInput [(ngModel)]="reportModel.description" #report_description="ngModel" name="report_description" placeholder="Description">
+      <textarea matInput [(ngModel)]="reportModel.description" #report_description="ngModel" name="report_description" placeholder="Description"></textarea>
     </mat-form-field>
     <mat-form-field>
-      <input matInput [(ngModel)]="reportModel.prescription" #report_prescription="ngModel" name="report_prescription" placeholder="Prescription">
+      <textarea matInput [(ngModel)]="reportModel.prescription" #report_prescription="ngModel" name="report_prescription" placeholder="Prescription"></textarea>
     </mat-form-field>
     <mat-form-field>
         <input matInput [matDatepicker]="picker" [(ngModel)]="reportModel.nextDate" #report_nextdate="ngModel" name="report_nextdate" placeholder="Next Date">
@@ -12,9 +11,8 @@
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
   
-  </li>
-
-    <button mat-raised-button (click)="AddReport()">Submit</button>
 
 
-</ol>
+  
+    <button type="submit" class="btn btn-primary btn-lg btn-block" (click)="AddReport()">Submit</button>
+
