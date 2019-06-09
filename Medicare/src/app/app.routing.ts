@@ -13,8 +13,8 @@ const routes: Routes =[
   {path:'',component:MainpageComponent,pathMatch:'full'},
   {path:'doctors',component:DoctorsComponent,pathMatch:'full'},
   {
-    path: 'dashboard',
-    redirectTo: 'dashboard',
+    path: 'user-profile',
+    redirectTo: 'user-profile',
     pathMatch: 'full',
   }, {
     path: '',

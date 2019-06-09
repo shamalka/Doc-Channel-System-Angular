@@ -69,7 +69,7 @@ export class AppointmentFormComponent implements OnInit {
         console.log(this.appointmentObject);
         
         this.dialogRef.close();
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/appointments']);
       },(err:HttpErrorResponse)=>{
         console.log(err.error);
       });

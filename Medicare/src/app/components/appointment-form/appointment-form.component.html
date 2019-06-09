@@ -45,10 +45,13 @@
     </div>
   </form> -->
 
-
-    <mat-form-field>
-        <input matInput required [(ngModel)]="appointmentModel.fullName" #appointment_name="ngModel" name="appointment_name" placeholder="Full Name">
-        <div class="alert alert-danger" *ngIf="appointment_name.touched && !appointment_name.valid">Full name is required.</div>
+    <mat-form-field *ngIf="doctors">
+        <mat-label>Select Doctor</mat-label>
+        <mat-select [(ngModel)]="appointmentModel.doctor" #doctor="ngModel" name="doctor">
+          <mat-option *ngFor="let doctor of doctors" [value]="doctor.doctorName" (onSelectionChange)="getPatientCount(doctor.doctorName, doctor.patientCount)">
+            {{ doctor.doctorName }}
+          </mat-option>
+        </mat-select>
     </mat-form-field>
     <mat-form-field>
         <input matInput required [(ngModel)]="appointmentModel.email" #appointment_email="ngModel" name="appointment_email" placeholder="Email">
@@ -64,14 +67,7 @@
         <input matInput [(ngModel)]="appointmentModel.time" #appointment_time="ngModel" name="appointment_time" type="time" placeholder="Time">
         <div class="alert alert-danger" *ngIf="appointment_time.touched && !appointment_time.valid">Time is required.</div>
     </mat-form-field>
-    <mat-form-field *ngIf="doctors">
-        <mat-label>Select Doctor</mat-label>
-        <mat-select [(ngModel)]="appointmentModel.doctor" #doctor="ngModel" name="doctor">
-          <mat-option *ngFor="let doctor of doctors" [value]="doctor.doctorName" (onSelectionChange)="getPatientCount(doctor.doctorName, doctor.patientCount)">
-            {{ doctor.doctorName }}
-          </mat-option>
-        </mat-select>
-    </mat-form-field>
+    
       <mat-form-field>
         <textarea matInput required [(ngModel)]="appointmentModel.message" #appointment_message="ngModel" name="appointment_message" placeholder="Message"></textarea>
         <div class="alert alert-danger" *ngIf="appointment_message.touched && !appointment_message.valid">Message is required.</div>
