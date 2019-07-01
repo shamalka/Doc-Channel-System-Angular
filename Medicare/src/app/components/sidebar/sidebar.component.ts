@@ -24,7 +24,8 @@ export const PATIENT_ROUTES: RouteInfo[] = [
   { path: '/dashboard', title: 'Patient Dashboard',  icon: 'dashboard', class: '' },
   { path: '/user-profile', title: 'User Profile',  icon:'person', class: '' },
   { path: '/table-list', title: 'Appointments',  icon:'content_paste', class: '' },
-  { path: '/typography', title: 'Reports',  icon:'library_books', class: '' }
+  { path: '/typography', title: 'Reports',  icon:'library_books', class: '' },
+  { path: '/available', title: 'Available Doctors',  icon:'supervisor_account', class: '' },
   // { path: '/maps', title: 'Maps',  icon:'location_on', class: '' },
   // { path: '/notifications', title: 'Notifications',  icon:'notifications', class: '' },
   // { path: '/upgrade', title: 'Upgrade to PRO',  icon:'unarchive', class: 'active-pro' },

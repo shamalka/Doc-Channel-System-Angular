@@ -24,6 +24,7 @@ import {
   MatSnackBarModule,
   MatSlideToggleModule
 } from '@angular/material';
+import { AvailabilityComponent } from 'app/availability/availability.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -49,6 +50,7 @@ import {
     MapsComponent,
     NotificationsComponent,
     UpgradeComponent,
+    AvailabilityComponent
   ]
 })
 

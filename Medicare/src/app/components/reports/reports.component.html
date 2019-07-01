@@ -1,4 +1,4 @@
-<div *ngIf="reportsModel">
+<div *ngIf="reportsModel" id="print">
     <div *ngFor="let report of reportsModel">
         <div class="card card-chart">
             <div class="card-header card-header-warning">
@@ -9,8 +9,8 @@
                 <p class="card-category">{{ report.prescription }}</p>
             </div>
             <div class="card-footer">
-                <button mat-raised-button type="submit" class="btn btn-success pull-right">Print Prescription</button>
             </div>
         </div>
     </div>
+    <button mat-raised-button (click)="print('print')" class="btn btn-success pull-right">Print Prescriptions</button>
 </div>

@@ -1,0 +1,47 @@
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card">
+                  <div class="card-header card-header-danger">
+                      <h4 class="card-title ">Availability Of Doctors</h4>
+                      <p class="card-category"> Available doctors at this time</p>
+                  </div>
+                  <div class="card-body">
+                      <div class="table-responsive">
+                          <table class="table" *ngIf="doctors">
+                              <thead class=" text-primary">
+                                  <th>
+                                      Doctor Name
+                                  </th>
+                                  <th>
+                                      Type
+                                  </th>
+                                  <th>
+                                      Availability
+                                  </th>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let doctor of doctors">
+                                      <td *ngIf="doctor.availability">
+                                          {{ doctor.doctorName }}
+                                      </td>
+                                      <td *ngIf="doctor.availability">
+                                          {{ doctor.type }}
+                                      </td>
+                                      <td *ngIf="doctor.availability">
+                                        <mat-slide-toggle class="example-margin" [checked]=true></mat-slide-toggle>
+                                      </td>
+                                  </tr>
+                                
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          
+      </div>
+  </div>
+</div>
+
