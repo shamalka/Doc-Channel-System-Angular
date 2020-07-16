@@ -14,7 +14,7 @@
     "express-session": "^1.16.1",
     "express-validator": "^5.3.1",
     "jsonwebtoken": "^8.5.1",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "mongoose": "*",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0"
